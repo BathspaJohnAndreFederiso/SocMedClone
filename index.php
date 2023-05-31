@@ -46,7 +46,7 @@ if (isset($_SESSION['loggedin'])) {
 
                 </form>
 
-                <p id="invData">
+                <p id="error-msg">
                     <!-- hidden element for "invalid data" -->
                     <?php
 
