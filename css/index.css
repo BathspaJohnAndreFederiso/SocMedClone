@@ -5,16 +5,24 @@
   
   }
 
+  
+  @font-face {
+    font-family: "Mont";
+    src: url("../Assets/Fonts/Montserrat.ttf") format('truetype');
+  
+  }
+
+
   @font-face {
     font-family: "SpectralSC-Bold";
     src: url("../Assets/Fonts/SpectralSC-Bold.ttf") format('truetype');
   
   }
-  /*
+  
   *{
     border: 1px solid red;
   }
-  */
+ 
   body{
     margin: 0 auto;
     background-color: #2D2C2B;
@@ -39,7 +47,7 @@
     width: 100%;
   }
   .options{  /* manages class options, which contain the actual links */
-    padding: 15px 35px;
+    padding: 15px 95px;
     border-radius: 5px;
     font-family: SpectralSC-Bold;
     color:black;
@@ -48,9 +56,9 @@
     justify-content: space-between;
     align-items: center;
     background-color: #CB7A00;
-    margin: 10px 25px; /* top and bottom margins are 0 and side margins are 45px*/
+    margin: 10px 25px; /* top and bottom margins are 10px and side margins are 45px*/
     height: 15%; /* set height to 15% and width to 85% */
-    width: 85%; 
+    width: 85%;  
   }
   .options a{ /* no text-decoration on the links */
     text-decoration:none;
@@ -61,4 +69,145 @@
     padding: 0 45px;
     border-radius: 5px;
   
+  }
+
+
+
+
+
+  .text-boxes{
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+   
+    flex-direction: row;
+  }
+  .text-boxes div{
+    padding: 7px;
+    border-radius: 5px;
+  }
+  .right{
+    height: 900px;
+    width: 50%;
+    overflow: auto;
+  }
+
+
+  .left{
+    width: 25%;
+    height: 50%;
+  }
+
+  .left div{
+    
+    background-color: #535353;
+  }
+  
+  .date{
+    font-size: 12px;
+  }
+  
+  .username{
+    font-family: SpectralSC-Reg;
+    line-height: 0.2;
+    width: 100%;
+    color: white;
+  }
+  .username h1{
+    font-size: 25px;
+  }
+  .username h3{
+    font-size: 15px;
+  }
+
+
+  .post{
+    
+    background-color: #535353;
+  }
+  .user-info{
+    
+    font-family: SpectralSC-Reg;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 50px;
+  }
+  .user-info img{
+    
+    object-fit: cover;
+
+  }
+  .user{
+    
+    font-family: SpectralSC-Reg;
+    display: flex;
+    flex-direction: row;
+    align-items:center;
+    color:white;
+    margin-bottom: 10px;
+  }
+  .user img{
+    object-fit: cover;
+  }
+  
+  .names{
+    line-height: 0;
+    width: 100%;
+    min-height: 20px;
+  }
+  .names h1{
+    font-size: 25px;
+  }
+  .names h3{
+    font-size: 15px;
+  }
+
+  .info{
+    color: white;
+    
+  }
+  .info h1{
+    text-align: center;
+    font-family: SpectralSC-Reg;
+    font-size: 30px;
+  }
+  
+  .info p{
+    width: 100%;
+    font-family: Mont;
+    font-size: 15px;
+  }
+
+  
+  
+  .rightest{
+    width: 25%;
+    height: 50%;
+    
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content: center;
+  }
+  .rightest div{
+    margin: 7px 0;
+    background-color: #535353;
+  }
+
+  .create-post{
+    
+    font-family: SpectralSC-Bold;
+    width: 75%;
+    height: 80%;
+    padding: 5px;
+    border-radius: 5px;
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    background-color: #CB7A00;
+  }
+  .create-post a{
+    color:black;
+    text-decoration: none;
   }

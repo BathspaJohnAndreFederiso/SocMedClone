@@ -30,27 +30,120 @@ session_start();
      <div class="options">
        
    
-        <a class="selected" href="#">
+        <a class="selected">
         <h3><span style="color: white;">MORDHAU</span></h3>
         </a>
      
 
        <a href="#">
-       <h3><span style="color: white;">CHIVALRY</span></h3>
+       <h3><span style="color: black;">CHIVALRY</span></h3>
        </a>
 
        <a href="#">
-       <h3><span style="color: white;">FOR HONOR</span></h3>
+       <h3><span style="color: black;">FOR HONOR</span></h3>
        </a>
 
        <a href="#">
-       <h3><span style="color: white;">HELLISH QUART</span></h3>
+       <h3><span style="color: black;">HELLISH QUART</span></h3>
        </a>
 
       </div>
 
 
     </div>
+
+   </div>
+
+   <div class="text-boxes">
+
+
+    <div class="left">  
+
+      <div class="user">
+
+        <img src="Assets/Icons/hilt_icon.png" height="100%" width="120px"/>  
+        <div class="names"> 
+          <h1> Username </h1>
+          <h3> email@email.com </h3>
+        
+        </div>
+
+      </div>
+
+      
+      <div class="buttons">
+            
+      </div>
+
+      <div class="info">
+        <h1> MORDHAU </h1>
+        <p>
+
+         MORDHAU is a medieval first & third person multiplayer slasher. Enter a hectic battlefield of up to 64 players as a mercenary in a fictional, but realistic world, where you will get to experience the brutal and satisfying melee combat that will have you always coming back for more.
+
+        </p>
+      </div>
+
+    </div>
+
+    <div class="right">  
+
+      <div class="post">
+
+        <div class="user-info"> 
+          <img src="Assets/Icons/hilt_icon.png" class="pfp" height="100%" width="60px"/>  
+          
+          <div class="username"> 
+            
+            <h1> POST OWNER NAME</h1>
+        
+            <h3> post owner's email, just now</h3>
+            
+           
+          </div>
+
+        </div>
+
+        <div class="post-content">
+          
+       
+
+            <div class="post-media">
+              
+            </div>
+
+            <div class="post-text">
+              
+            </div>
+
+        </div>
+        
+        <div class="reply">
+              
+        </div>
+
+      </div>
+
+    </div>
+
+
+    
+    <div class="rightest">  
+
+        <form class="create-post">
+         <a href="#"><h2>CREATE POST</h2></a>
+        </form>
+
+
+        <div>
+
+        </div>
+    </div>
+ 
+ 
+
+
+
 
    </div>
 
