@@ -1,7 +1,7 @@
-<?php // this file will be used by LoginPage.php in its login form
-// Try to connect using this info
+<?php 
 
-include 'connect.php';
+
+include 'connect.php'; // this file will be used by login.php in its login form
 
 if (!isset($_POST['username'], $_POST['password']) ) { // error checking if session tags for 'username' and 'password' are not set
 	// displays this message to user
@@ -11,9 +11,11 @@ if (!isset($_POST['username'], $_POST['password']) ) { // error checking if sess
 }
 
 if ($stmt = $conn->prepare('SELECT id, password FROM crocaccounts WHERE username = ?')) { // $stmt variable connects to database with a prepared statement
+    
     // prepared statement selects the id and password from crocaccounts associated with a provided username parameter
-	// bound parameter types are represented by the first letter of ther name (s = string, i = int, b = blob, etc). the username data type is a string so it uses "s"
+	// bound parameter types are represented by the first letter of their name (s = string, i = int, b = blob, etc). the username data type is a string so it uses "s"
     // the username form will now be expecting a string value to be entered, minimizing the risk 
+
 	$stmt->bind_param('s', $_POST['username']); // bind the username acquired from the POST to the prepared statement
 	$stmt->execute(); // execute the prepared statement
 	// Store the results of $stmt (which are the provided details run through the prepared statement) so we can check if the account exists in the database.

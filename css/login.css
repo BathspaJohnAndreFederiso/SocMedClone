@@ -6,6 +6,12 @@
   }
 
   @font-face {
+    font-family: "Medieval";
+    src: url("../Assets/Fonts/MedievalSharp-Regular.ttf") format('truetype');
+  
+  }
+
+  @font-face {
     font-family: "SpectralSC-Bold";
     src: url("../Assets/Fonts/SpectralSC-Bold.ttf") format('truetype');
   
@@ -34,9 +40,6 @@
     
    }
 
-   *{
-    border: 1px solid red;
-   }
    
    /* this section class manages the div where the content is in */
    .section{
@@ -93,8 +96,8 @@
     font-family: SpectralSC-Reg;
    }
    .form-section h1{
-    font-size: 60px;
-    font-family: SpectralSC-Bold;
+    font-size: 65px;
+    font-family: SpectralSC-Reg;
    
    }
    
@@ -102,7 +105,7 @@
    .section a {
      text-decoration:none;
      font-weight:bold;
-     color: black;
+     color: #F2BD00;
    }
    
    /*Username and Password form*/
@@ -116,16 +119,14 @@
    .input-form input{
        font-family: SpectralSC-Reg;
        background-color:#535353;
+       color:white;
+       font-size: 15px;
        outline: none; /* removes the outline from the actual input box */
        width: 90%;
    }
    .btn-group{
-    
     display:flex;
-    
     align-items: center;
-    
-    
     justify-content: center;
    }
    /*Button*/
@@ -134,7 +135,7 @@
        font-family: SpectralSC-Reg;
        font-size:19px;
        font-weight:bold;
-       background-color: #7A3E65;
+       background-color: #CB7A00;
        width: 50%;
        height: 100%;
        padding: 8px;
@@ -143,7 +144,8 @@
        color:white;
    }
    .btn:hover{
-     background-color: #642528;
-     transition: background-color 0.4s;
+     background-color: #F2BD00;
+     color:black;
+     transition: background-color 0.2s;
    
    }

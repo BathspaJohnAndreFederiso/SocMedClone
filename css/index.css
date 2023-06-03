@@ -1,0 +1,64 @@
+  
+  @font-face {
+    font-family: "SpectralSC-Reg";
+    src: url("../Assets/Fonts/SpectralSC-Regular.ttf") format('truetype');
+  
+  }
+
+  @font-face {
+    font-family: "SpectralSC-Bold";
+    src: url("../Assets/Fonts/SpectralSC-Bold.ttf") format('truetype');
+  
+  }
+  /*
+  *{
+    border: 1px solid red;
+  }
+  */
+  body{
+    margin: 0 auto;
+    background-color: #2D2C2B;
+  }
+
+  .coms{
+    padding: 10px 25px;
+    display:flex; 
+    justify-content: center;
+    align-items: center; /* display on flex and centered the justfy-content and align-items options*/
+    background: url("../Assets/Images/mordhau_banner.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    height: 100%;
+  }
+
+  .comsbanner{ /* manages the comsbanner, which shows the different communities of mordhub */
+    display:flex; 
+    justify-content: center;
+    align-items: center; /* display on flex and centered the justfy-content and align-items options*/
+    padding: 15px;
+    width: 100%;
+  }
+  .options{  /* manages class options, which contain the actual links */
+    padding: 15px 35px;
+    border-radius: 5px;
+    font-family: SpectralSC-Bold;
+    color:black;
+    font-size: 20px;
+    display:flex; 
+    justify-content: space-between;
+    align-items: center;
+    background-color: #CB7A00;
+    margin: 10px 25px; /* top and bottom margins are 0 and side margins are 45px*/
+    height: 15%; /* set height to 15% and width to 85% */
+    width: 85%; 
+  }
+  .options a{ /* no text-decoration on the links */
+    text-decoration:none;
+  
+  }
+  .selected{ /* set the class for the currently selected community (in index, this is Mordhau)*/
+    background-color: #2D2C2B;
+    padding: 0 45px;
+    border-radius: 5px;
+  
+  }

@@ -27,7 +27,7 @@ if (isset($_SESSION['logged_in'])) {
 
             <div class="title"> 
              <img src="Assets/Icons/hilt_icon.png" height="100%" width="75px"/> 
-             <h1>MORDHUB </h1>
+             <h1>MORDHUB</h1>
             </div>
             <h3> home to <span style="color: #F2BD00;">mordhau</span>, <span style="color: #0F4DEC;">chivalry</span>, <span style="color: #EC002A;">for honor</span> and more</h3>
 
@@ -62,7 +62,6 @@ if (isset($_SESSION['logged_in'])) {
                 <p id="error-msg">
                     <!-- element for displaying error messages, hidden if there are no messages -->
                     <?php
-
                     if (isset($_SESSION["Error"])) { // if session tag for error is set
                         echo $_SESSION['Error']; // echo the value of error
                         unset($_SESSION['Error']); // immediately unset the tag so it doesn't show up after refreshing the page
