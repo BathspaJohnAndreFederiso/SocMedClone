@@ -25,25 +25,37 @@ if (isset($_SESSION['logged_in'])) {
 
         <div class="form-section">
 
-            <h1>Mordhub</h1>
-            <h3> Home To <span style="color: #F2BD00;">Mordhau</span>, <span style="color: #0F4DEC;">Chivalry</span>, <span style="color: #EC002A;">For Honor</span> and More</h3>
+            <div class="title"> 
+             <img src="Assets/Icons/hilt_icon.png" height="100%" width="75px"/> 
+             <h1>MORDHUB </h1>
+            </div>
+            <h3> home to <span style="color: #F2BD00;">mordhau</span>, <span style="color: #0F4DEC;">chivalry</span>, <span style="color: #EC002A;">for honor</span> and more</h3>
 
                 <form class="inline" action="PHPOnly/authaccount.php" method="post" autocomplete="off">
 
                     <div class="input-form">
-                        <i class="fa fa-user icon"></i>
                         <input style="border: none;" class="input-field" type="text" name="username" id="username"
                             placeholder="Username" required />
                     </div>
                     <br>
 
                     <div class="input-form">
-                        <i class="fa fa-lock icon"></i>
                         <input style="border: none;" class="input-field" type="password" name="password" id="password"
                             placeholder="Password" required />
                     </div>
 
+                    
+                    <p>Don't have an account? <a href="Register.php">Enlist</a></p>
+
+                    <p>Forgot your Password? <a href="ForgetPass.php">Reset</a></p>
+
+                    
+                    <div class="btn-group"> 
+
+
                     <input class="btn" type="submit" name="log" id="log" value="L O G I N">
+
+                    </div>
 
                 </form>
 
@@ -58,9 +70,6 @@ if (isset($_SESSION['logged_in'])) {
                     ?>
                 </p>
 
-                <p>Don't have an account? <a href="Register.php">Enlist</a></p>
-
-                <p>Forgot your Password? <a href="ForgetPass.php">Reset</a></p>
 
                 
 

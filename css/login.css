@@ -1,38 +1,54 @@
+   
+   @font-face {
+    font-family: "SpectralSC-Reg";
+    src: url("../Assets/Fonts/SpectralSC-Regular.ttf") format('truetype');
+  
+  }
+
+  @font-face {
+    font-family: "SpectralSC-Bold";
+    src: url("../Assets/Fonts/SpectralSC-Bold.ttf") format('truetype');
+  
+  }
+
+   
    body{
+    
     margin: 0;
 
     
-    background: linear-gradient(rgba(0, 0, 100, 0.60), rgba(0, 0, 0, 0.60)), url("../Images/stockImages/logpagebg.png");
+    background: linear-gradient(rgba(0, 0, 100, 0.60), rgba(0, 0, 0, 0.60)), url("../Assets/Images/login_wallpaper.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
     
-   }
-   .bgclass{
+    background-size: 100%;
+
+    
     height: 100vh;
     overflow: hidden;
-    position: relative;
+    
     width: 100%;
-    /*background-image: url(/Crocycle/Images/StockImages/LogPageBG.png);*/
-    background-size: 100% 100%;
     display: flex;
-   
-    flex-flow: column nowrap;
     align-items:center;
     justify-content: center;
+    
    }
-   
+
+   *{
+    border: 1px solid red;
+   }
    
    /* this section class manages the div where the content is in */
    .section{
        /* manages the position of the section div */
-       background-color: #A96262;
+       background-color: #2D2C2B;
        /* changes background color */
        flex-direction:space-between;
        display: flex;
        align-items:center;
        justify-content: center;
        /* centers the objects within */
-       height: 500px;
+      
        width: 55%;
        /* manages the height and width */
        border-radius: 15px;
@@ -43,33 +59,43 @@
        
    }
    
-   /*Parallax Section*/
-   .parallax{
-     margin-right:20px;
-     min-width:100px;
-     height: 635px;
-     width:30%;
-     background-color: black;
-     overflow: hidden;
-     border-radius: 15px;
-     
-   }
-   
-   
    /* This is where the login section is*/
-   .inputsection {
+   .form-section {
        /*width: 382px;*/
+       
        width: 30%;
-       padding: 75px;
+       
+       padding: 0 75px;
        border-radius: 15px ;
        flex-grow: 2;
        
    }
    
+   .title{
+    padding: 0;
+    display:flex;
+    
+    align-items: center;
+    
+    justify-content: center;
+   }
    /*Forget Password Section*/
-   .inputsection p{
+   .form-section h1, .form-section h3, .form-section p{
      text-align: center;
-     font-family: MontR;
+     color:white;
+   }
+   .form-section h3{
+    
+    font-family: SpectralSC-Reg;
+   }
+   .form-section p{
+    
+    font-family: SpectralSC-Reg;
+   }
+   .form-section h1{
+    font-size: 60px;
+    font-family: SpectralSC-Bold;
+   
    }
    
    /*Hyperlink*/
@@ -80,28 +106,36 @@
    }
    
    /*Username and Password form*/
-   .inputs{
-       border: 1px solid #DDD; 
-       background-color:white;
+   .input-form{
+       border-bottom: 5px solid #CB7A00; 
+       background-color:#535353;
        padding: 12px;
-       border-radius: 5px;
    }
    
    /* manages the actual input elements */
-   .inputs input{
-       font-family: MontR;
+   .input-form input{
+       font-family: SpectralSC-Reg;
+       background-color:#535353;
        outline: none; /* removes the outline from the actual input box */
        width: 90%;
    }
-   
+   .btn-group{
+    
+    display:flex;
+    
+    align-items: center;
+    
+    
+    justify-content: center;
+   }
    /*Button*/
    .btn{
        margin-top: 15px;
-       font-family: MontR;
+       font-family: SpectralSC-Reg;
        font-size:19px;
        font-weight:bold;
        background-color: #7A3E65;
-       width: 100%;
+       width: 50%;
        height: 100%;
        padding: 8px;
        border: none;
