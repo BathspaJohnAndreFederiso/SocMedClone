@@ -54,6 +54,8 @@ session_start();
 
    </div>
 
+   <div class="below"> 
+
    <div class="text-boxes">
 
 
@@ -86,7 +88,7 @@ session_start();
 
     </div>
 
-    <div class="right">  
+    <div class="center">  
 
       <div class="post">
 
@@ -95,9 +97,9 @@ session_start();
           
           <div class="username"> 
             
-            <h1> POST OWNER NAME</h1>
+            <h1> POST OWNER </h1>
         
-            <h3> post owner's email, just now</h3>
+            <p> postowner@email.com, 5 minutes ago</p>
             
            
           </div>
@@ -109,35 +111,51 @@ session_start();
        
 
             <div class="post-media">
-              
+              <img src="Assets/Images/mordhau_banner.png" class="pfp" height="100%" width="100%"/>  
             </div>
 
             <div class="post-text">
-              
+                <p> 
+                  Looking for duelyards. Any recs?
+                </p>
             </div>
 
+            <div class="replies"> 
+              
+              <a class="option" href="createpost.php"> REPLY </a>
+               
+              <a class="option" href="indivcomment.php"> 4 REPLIES</a>
+
+
+            </div>
+           
+            
         </div>
         
-        <div class="reply">
-              
-        </div>
 
       </div>
+
+
+      
 
     </div>
 
 
     
-    <div class="rightest">  
+    <div class="right">  
 
-        <form class="create-post">
-         <a href="#"><h2>CREATE POST</h2></a>
-        </form>
+        <a class="create-post" href="createpost.php"><h2>CREATE POST</h2></a>
+      
 
 
-        <div>
-
+        <div class="cover">
+             
+          <img src="Assets/Images/mordhau_cover.jpg" class="pfp" height="100%" width="100%"/>  
+          
         </div>
+    </div>
+
+
     </div>
  
  
