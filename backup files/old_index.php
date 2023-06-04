@@ -25,10 +25,36 @@ session_start();
 
   <div class="coms">
    
+    <div class="comsbanner">
+ 
+     <div class="options">
+       
+   
+        <a class="selected">
+        <h3><span style="color: white;">MORDHAU</span></h3>
+        </a>
+     
 
-  </div>
+       <a href="#">
+       <h3><span style="color: black;">CHIVALRY</span></h3>
+       </a>
 
-  <div class="below"> 
+       <a href="#">
+       <h3><span style="color: black;">FOR HONOR</span></h3>
+       </a>
+
+       <a href="#">
+       <h3><span style="color: black;">HELLISH QUART</span></h3>
+       </a>
+
+      </div>
+
+
+    </div>
+
+   </div>
+
+   <div class="below"> 
 
    <div class="text-boxes">
 
@@ -118,52 +144,26 @@ session_start();
     
     <div class="right">  
 
-      <a class="create-post" href="createpost.php"><h2>CREATE POST</h2></a>
-    
-            
-      <div class="comsbanner">
- 
-        <div class="options">
-   
-         <div>
-           <a class="selected">
-           <h3><span style="color: white;">MORDHAU</span></h3>
-           </a>
-         </div>
+        <a class="create-post" href="createpost.php"><h2>CREATE POST</h2></a>
+      
 
-         <div>
-           <a>
-           <h3><span style="color: white;">CHIVALRY</span></h3>
-           </a>
-         </div>
 
-         <div>
-           <a>
-           <h3><span style="color: white;">FOR HONOR</span></h3>
-           </a>
-         </div>
-
-         <div>
-           <a>
-           <h3><span style="color: white;">HELLISH QUART</span></h3>
-           </a>
-         </div>
-
-       </div>
-
-      </div>
-
+        <div class="cover">
+             
+          <img src="Assets/Images/mordhau_cover.jpg" class="pfp" height="100%" width="100%"/>  
+          
+        </div>
     </div>
 
 
+    </div>
+ 
+ 
+
+
+
+
    </div>
- 
- 
-
-
-
-
-  </div>
 
 
 
