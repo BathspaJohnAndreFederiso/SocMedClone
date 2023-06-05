@@ -1,0 +1,150 @@
+@font-face {
+    font-family: "SpectralSC-Reg";
+    src: url("../Assets/Fonts/SpectralSC-Regular.ttf") format('truetype');
+  
+  }
+
+  @font-face {
+    font-family: "Medieval";
+    src: url("../Assets/Fonts/MedievalSharp-Regular.ttf") format('truetype');
+  
+  }
+
+  @font-face {
+    font-family: "SpectralSC-Bold";
+    src: url("../Assets/Fonts/SpectralSC-Bold.ttf") format('truetype');
+  
+  }
+
+   
+   body{
+    
+    margin: 0;
+
+    
+    background: linear-gradient(rgba(0, 0, 100, 0.60), rgba(0, 0, 0, 0.60)), url("../Assets/Images/login_wallpaper.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    
+    background-size: 100%;
+
+    
+    height: 100vh;
+    overflow: hidden;
+    
+    width: 100%;
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    
+   }
+
+   
+   /* this section class manages the div where the content is in */
+   .section{
+       /* manages the position of the section div */
+       background-color: #2D2C2B;
+       /* changes background color */
+       flex-direction:space-between;
+       display: flex;
+       align-items:center;
+       justify-content: center;
+       /* centers the objects within */
+      
+       width: 55%;
+       /* manages the height and width */
+       border-radius: 15px;
+       overflow:hidden;
+       /* rounds the corners and hides overflowing hidden */
+       box-shadow: 0 8px 8px 3px rgb(41, 40, 40, 0.4);
+       
+       
+   }
+   
+   /* This is where the login section is*/
+   .form-section {
+       /*width: 382px;*/
+       
+       width: 30%;
+       
+       padding: 0 75px;
+       border-radius: 15px ;
+       flex-grow: 2;
+       
+   }
+   
+   .title{
+    padding: 0;
+    display:flex;
+    
+    align-items: center;
+    
+    justify-content: center;
+   }
+   /*Forget Password Section*/
+   .form-section h1, .form-section h3, .form-section p{
+     text-align: center;
+     color:white;
+   }
+   .form-section h3{
+    
+    font-family: SpectralSC-Reg;
+   }
+   .form-section p{
+    
+    font-family: SpectralSC-Reg;
+   }
+   .form-section h1{
+    font-size: 65px;
+    font-family: SpectralSC-Reg;
+   
+   }
+   
+   /*Hyperlink*/
+   .section a {
+     text-decoration:none;
+     font-weight:bold;
+     color: #F2BD00;
+   }
+   
+   /*Username and Password form*/
+   .input-form{
+       border-bottom: 5px solid #CB7A00; 
+       background-color:#535353;
+       padding: 12px;
+   }
+   
+   /* manages the actual input elements */
+   .input-form input{
+       font-family: SpectralSC-Reg;
+       background-color:#535353;
+       color:white;
+       font-size: 15px;
+       outline: none; /* removes the outline from the actual input box */
+       width: 90%;
+   }
+   .btn-group{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+   }
+   /*Button*/
+   .btn{
+       margin-top: 15px;
+       font-family: SpectralSC-Reg;
+       font-size:19px;
+       font-weight:bold;
+       background-color: #CB7A00;
+       width: 50%;
+       height: 100%;
+       padding: 8px;
+       border: none;
+       border-radius: 7px;
+       color:white;
+   }
+   .btn:hover{
+     background-color: #F2BD00;
+     color:black;
+     transition: background-color 0.2s;
+   
+   }
