@@ -114,6 +114,14 @@
        padding: 12px;
    }
    
+   .input-form:hover{
+    
+    border-top: 2px solid #F2BD00; 
+    border-left: 2px solid #F2BD00; 
+    border-right: 2px solid #F2BD00; 
+    border-bottom: 5px solid #CB7A00; 
+    transition: 0.1s ease all;
+  }
    /* manages the actual input elements */
    .input-form input{
        font-family: SpectralSC-Reg;

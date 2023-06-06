@@ -45,7 +45,7 @@ if (isset($_SESSION['logged_in'])) {
                     </div>
 
                     
-                    <p>Don't have an account? <a href="Register.php">Enlist</a></p>
+                    <p>Don't have an account? <a href="registration.php">Enlist</a></p>
 
                     <p>Forgot your Password? <a href="ForgetPass.php">Reset</a></p>
 
