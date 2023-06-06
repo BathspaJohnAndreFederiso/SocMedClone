@@ -2,9 +2,8 @@
 session_start();
 //if (!isset($_SESSION['logged_in'])) {
     //header('Location: login.php'); // redirect to logged_in page
-    //exit;
+      //exit;
 //}
-
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +15,7 @@ session_start();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mordhau</title>
+    <title>Mordhub: Home</title>
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
@@ -34,18 +33,22 @@ session_start();
 
 
     <div class="left">  
+      
 
-      <div class="user">
+      <?php 
+          if (isset($_SESSION['logged_in'])) {
+            echo "
+           <div class='user'>
+           <img src='Assets/Icons/hilt_icon.png' height='100%' width='120px'/>  
+           <div class='names'>  
+           <h1>  Username  </h1>
+           <h3>  username@email.com </h3>
+           </div>
+           </div>";
+          }
 
-        <img src="Assets/Icons/hilt_icon.png" height="100%" width="120px"/>  
-        <div class="names"> 
-          <h1> Username </h1>
-          <h3> email@email.com </h3>
-        
-        </div>
-
-      </div>
-
+      ?>
+      
       
       <div class="buttons">
             
@@ -127,28 +130,45 @@ session_start();
    
          <div>
            <a class="selected">
-           <h3><span style="color: white;">MORDHAU</span></h3>
+           <h3><span style="color: white;">TIMELINE</span></h3>
            </a>
          </div>
 
-         <div>
-           <a>
-           <h3><span style="color: white;">CHIVALRY</span></h3>
-           </a>
-         </div>
+         <?php 
+         if (isset($_SESSION['logged_in'])) {
+          echo "
 
-         <div>
-           <a>
-           <h3><span style="color: white;">FOR HONOR</span></h3>
-           </a>
-         </div>
+          <div>
+            <a href='userprofile.php'>
+             <h3><span style='color: white;'>PROFILE</span></h3>
+            </a>
+          </div>
 
-         <div>
-           <a>
-           <h3><span style="color: white;">HELLISH QUART</span></h3>
-           </a>
-         </div>
+          <div>
+            <a>
+             <h3><span style='color: white;'>LOG OUT</span></h3>
+            </a>
+          </div>
+         ";} else{
 
+          echo "
+
+          
+          <div>
+            <a href='login.php'>
+             <h3><span style='color: white;'>LOG IN</span></h3>
+            </a>
+          </div>
+
+          <div>
+            <a href='registration.php'>
+             <h3><span style='color: white;'>REGISTER</span></h3>
+            </a>
+          </div>
+         ";
+          
+         }
+         ?>
        </div>
 
       </div>

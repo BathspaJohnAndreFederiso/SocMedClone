@@ -29,7 +29,13 @@ if (isset($_SESSION['logged_in'])) {
              <img src="Assets/Icons/hilt_icon.png" height="100%" width="75px"/> 
              <h1>MORDHUB</h1>
             </div>
-            <h3> home to <span style="color: #F2BD00;">mordhau</span>, <span style="color: #0F4DEC;">chivalry</span>, <span style="color: #EC002A;">for honor</span> and more</h3>
+            
+
+            <h3> home to the <span style="color: #F2BD00;">mordhau</span> community</h3>
+            
+            
+
+
 
                 <form class="inline" action="PHPOnly/authaccount.php" method="post" autocomplete="off">
 
@@ -59,15 +65,18 @@ if (isset($_SESSION['logged_in'])) {
 
                 </form>
 
-                <p id="error-msg">
+                
+            <p id="error-msg">
                     <!-- element for displaying error messages, hidden if there are no messages -->
+                    <span style="color: #F2BD00;">
                     <?php
                     if (isset($_SESSION["Error"])) { // if session tag for error is set
                         echo $_SESSION['Error']; // echo the value of error
                         unset($_SESSION['Error']); // immediately unset the tag so it doesn't show up after refreshing the page
                     } 
                     ?>
-                </p>
+                    </span>
+            </p>
 
 
                 

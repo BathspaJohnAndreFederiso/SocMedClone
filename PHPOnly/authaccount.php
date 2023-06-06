@@ -10,9 +10,9 @@ if (!isset($_POST['username'], $_POST['password']) ) { // error checking if sess
     header ("Location: login.php");
 }
 
-if ($stmt = $conn->prepare('SELECT id, password, email FROM crocaccounts WHERE username = ?')) { // $stmt variable connects to database with a prepared statement
+if ($stmt = $conn->prepare('SELECT id, password, email FROM accounts WHERE username = ?')) { // $stmt variable connects to database with a prepared statement
     
-    // prepared statement selects the id and password from crocaccounts associated with a provided username parameter
+    // prepared statement selects the id and password from accounts associated with a provided username parameter
 	// bound parameter types are represented by the first letter of their name (s = string, i = int, b = blob, etc). the username data type is a string so it uses "s"
     // the username form will now be expecting a string value to be entered, minimizing the risk 
 
@@ -23,7 +23,7 @@ if ($stmt = $conn->prepare('SELECT id, password, email FROM crocaccounts WHERE u
 
 
     if ($stmt->num_rows > 0) { // checks if stmt's num_rows > 0 (means there is a result returned) 
-        $stmt->bind_result($id, $password, $email); // bind results of $stmt to new variables $id and $password
+        $stmt->bind_result($id, $password, $email); // bind results of $stmt to new variables $id, $password and email
         $stmt->fetch();  
         // verify the password since the given account actually exists in the database
         // Remember to use PASSWORD_HASH setting in your registration PHP file to store passwords.
@@ -34,8 +34,8 @@ if ($stmt = $conn->prepare('SELECT id, password, email FROM crocaccounts WHERE u
             session_regenerate_id(); // regenerate id just in case
             $_SESSION['logged_in'] = TRUE; // set a session cookie for logged_in to true
             $_SESSION['name'] = $_POST['username']; 
-            $_SESSION['email'] = $email; // set session cookise for the name and email to the values of $_POST['username'] and $email 
-            $_SESSION['id'] = $id; // set session id to the $id variable
+            $_SESSION['email'] = $email; // set session cookies for the name and email to the values of $_POST['username'] and $email 
+            $_SESSION['id'] = $id; // set session's id to the $id variable
             header('Location: ../index.php'); // redirect the user to index.php (this is the main screen usually)
         } else {
             // code that runs if the password is WRONG

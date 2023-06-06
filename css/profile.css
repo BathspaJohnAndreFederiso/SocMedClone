@@ -1,4 +1,4 @@
-  
+ 
   @font-face {
     font-family: "SpectralSC-Reg";
     src: url("../Assets/Fonts/SpectralSC-Regular.ttf") format('truetype');
@@ -23,24 +23,6 @@
     border: 1px solid red;
   }
   */
-
-  ::-webkit-scrollbar {
-    width: 3px;
-  } 
-
-  ::-webkit-scrollbar-track {
-    background: #888;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: #F2BD00;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    background: #CB7A00;
-  }
-
-
   body{
     margin: 0 auto;
     background-color: #2D2C2B;
@@ -62,45 +44,75 @@
     background-size: 100%;
     height: 150px;
   }
-
-
-
-
-
-
-
+  .center{
+    
+    border-radius: 5px;
+    height: 100%;
+    width: 50%;
+    overflow: auto;
+  }
+  
 
   .text-boxes{
-    height: 100%;
+    height: 790px;
     display: flex;
     justify-content: space-between;
     width: 80%;
     flex-direction: row;
   }
   .text-boxes div{
-    padding: 7px;
+    padding: 5px;
   }
-  .center{
-    
-    border-radius: 5px;
-    height: 900px;
-    width: 50%;
-    overflow: auto;
-  }
-
 
   .left{
     width: 25%;
-    height: 900px;
-    
+    display: flex;
+    justify-content: right;
     border-right: 3px solid #CB7A00;
   }
 
-  .left div{
+  
+  .pfp{
+    color: white;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+  
+  }
+  .update-pfp{
     
-    background-color: #535353;
+    display: flex;
+    flex-direction: column;
+  }
+  .pfp-upload{
+    width: 200px;
+  }
+
+  input{
+    
+    font-family: Mont;
+  }
+  input[type="file"]::file-selector-button {
+    border-radius: 4px;
+   
+    font-family: Mont;
+    cursor: pointer;
+    background-color: white;
+  }
+
+  /* file upload button hover state */
+  input[type="file"]::file-selector-button:hover {
+    background-color: #CB7A00;
+    transition: background-color 0.2s;
   }
   
+  /* file upload button active state */
+  input[type="file"]::file-selector-button:active {
+    background-color: #e5e7eb;
+  }
+  
+
+
   .date{
     font-size: 12px;
   }
@@ -113,131 +125,40 @@
   .username h1{
     
     font-family: SpectralSC-Reg;
-    font-size: 18px;
+    font-size: 30px;
+  }
+  
+  .username h3{
+    
+    font-family: SpectralSC-Reg;
+    font-size: 20px;
   }
   .username p{
     
     font-family: Mont;
-    font-size: 12px;
-  }
-
-  .post{
-    border-bottom: 3px solid #CB7A00;
+    font-size: 15px;
   }
   
-  .post-text{
-    background-color: #535353;
-    font-family:Mont; 
-    color:white;
-    font-size: 15px;
-    height: 100%;
-    min-width: 50%;
-  }
-  .replies{
-    margin-top: 5px;
-    display:flex;
-    align-items: center;
-    flex-direction: row-reverse;
-    justify-content: space-between;
-    height: 100%;
-  }
-  .replies a{
-    border-right: 2px solid white;
-    border-left: 2px solid white;
-    text-decoration: none;
-    color: white;
-    font-weight: bold;
-    border-radius: 5px;
-    font-family: Mont;
-    padding: 5px;
-    margin-right: 15px;
-  }
   .user-info{
     
     font-family: SpectralSC-Reg;
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    height: 50px;
+    flex-direction: column;
+    align-items: top;
   }
   .user-info img{
     
     object-fit: cover;
 
   }
-  .user{
-    
-    font-family: SpectralSC-Reg;
+  .about{
     display: flex;
-    flex-direction: row;
-    align-items:center;
-    color:white;
-    margin-bottom: 10px;
+    align-items: top;
   }
-  .user img{
-    object-fit: cover;
-  }
-  .login-links{
-    height: 80px;
-    line-height: 0.5;
-    width: 100%;
-    min-height: 20px;
-  }
-  .login-links a{
-    text-decoration: none;
-    color: white;
-    background-color: #CB7A00;
-    filter: drop-shadow(3px 3px 5px );
-  }
-  
-  .login-links h1:hover, .login-links h3:hover{
-    transition: 0.2s ease-in-out;
-    color: #cb1800;
-  }
-  .login-links h1{
-    font-size: 25px;
-  }
-  .login-links h3{
-    font-size: 15px;
-  }
-
-  .names{
-    line-height: 0;
-    width: 100%;
-    min-height: 20px;
-  }
-  .names h1{
-    font-size: 25px;
-  }
-  .names h3{
-    font-size: 15px;
-  }
-  .cover{
-    padding: 15px;
-  }
-  .info{
-    color: white;
-    
-  }
-  .info h1{
-    
-    filter: drop-shadow(3px 3px 5px gray);
-    text-align: center;
-    font-family: SpectralSC-Reg;
-    font-size: 30px;
-  }
-  
-  .info p{
-    width: 100%;
-    font-family: Mont;
-    font-size: 15px;
-  }
-
   
   
   .right{
     width: 25%;
-    height: 900px;
     border-left: 3px solid #CB7A00;
     display: flex;
     flex-direction: column;

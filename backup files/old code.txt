@@ -1,0 +1,31 @@
+----- OLD USER BOX W/ SESSION TAGS ------
+      <div class="user">
+
+        
+        <?php
+        // check if user is not logged in
+        if (!isset($_SESSION['logged_in'])) {
+          echo "
+          <div class='login-links'> 
+           <a href='login.php'>
+             <h1>LOG IN</h1>
+           </a>
+          
+           <a href='registration.php'>
+             <h1>SIGN UP</h1>
+           </a>
+          </div>";
+        } else {
+          $name = $_SESSION['name'];
+          $email = $_SESSION['email'];  
+          echo "
+          
+          <img src='Assets/Icons/hilt_icon.png' height='100%' width='120px'/>  
+          <div class='names'>  
+          <h1>  $name    </h1>
+          <h3>  $email </h3>
+          </div>";
+        }
+        ?>
+
+      </div>
