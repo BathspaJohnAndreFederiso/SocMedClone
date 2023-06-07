@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 06, 2023 at 08:56 AM
+-- Generation Time: Jun 07, 2023 at 09:20 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -32,8 +32,17 @@ CREATE TABLE `accounts` (
   `username` varchar(25) NOT NULL,
   `email` varchar(100) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `pfp` text NOT NULL DEFAULT 'hilt_icon.png'
+  `pfp` text NOT NULL DEFAULT 'hilt_icon.png',
+  `join_date` datetime NOT NULL DEFAULT current_timestamp(),
+  `bio` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `accounts`
+--
+
+INSERT INTO `accounts` (`id`, `username`, `email`, `password`, `pfp`, `join_date`, `bio`) VALUES
+(1, 'test', 'test@test.com', '$2y$10$SfhYIDtn.iOuCW7zfoFLuuZHX6lja4lF4XA4JqNmpiH/.P3zB8JCa', 'hilt_icon.png', '2023-06-07 22:55:20', '');
 
 -- --------------------------------------------------------
 
@@ -76,7 +85,7 @@ ALTER TABLE `mordhaucomments`
 -- AUTO_INCREMENT for table `accounts`
 --
 ALTER TABLE `accounts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `mordhaucomments`

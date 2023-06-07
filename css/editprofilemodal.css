@@ -1,0 +1,181 @@
+@font-face {
+    font-family: "SpectralSC-Reg";
+    src: url("../Assets/Fonts/SpectralSC-Regular.ttf") format('truetype');
+
+}
+
+@font-face {
+    font-family: "Medieval";
+    src: url("../Assets/Fonts/MedievalSharp-Regular.ttf") format('truetype');
+
+}
+
+@font-face {
+    font-family: "SpectralSC-Bold";
+    src: url("../Assets/Fonts/SpectralSC-Bold.ttf") format('truetype');
+
+}
+
+.editBtn {
+
+    font-family: SpectralSC-Reg;
+    font-size: 14px;
+    font-weight: bold;
+    background-color: #CB7A00;
+    padding: 3px;
+    border: none;
+    border-radius: 3px;
+    color: white;
+}
+
+.editBtn:hover {
+    background-color: #642528;
+    box-shadow: 3px 3px 1px #212020;
+    color: black;
+    transition: background-color 0.2s;
+}
+
+.modal {
+    display: none;
+    /* hide by default */
+    position: fixed;
+    /* stay on the spot */
+    z-index: 1;
+    /* Sit on top */
+    padding-top: 100px;
+    /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    /* Full width and height */
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+    /* bg colors */
+}
+
+/* this section class manages the div where the content is in */
+.edit-section {
+    /* manages the position of the section div */
+    background-color: #2D2C2B;
+    /* changes background color */
+    flex-direction: space-between;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* centers the objects within */
+    padding: 0 0 25px 0;
+    width: 45%;
+    /* manages the height and width */
+    border-radius: 5px;
+    overflow: hidden;
+    /* rounds the corners and hides overflowing hidden */
+    box-shadow: 0 8px 8px 3px rgb(41, 40, 40, 0.4);
+
+
+}
+
+/* This is where the login section is*/
+.editform-section {
+
+    width: 30%;
+    padding: 0 55px;
+    border-radius: 15px;
+    flex-grow: 2;
+
+}
+
+.title {
+    display: flex;
+
+    align-items: center;
+    line-height: 0.2;
+    justify-content: center;
+}
+
+/*Forget Password Section*/
+.editform-section h1,
+.editform-section h3,
+.editform-section p {
+    text-align: center;
+    color: white;
+}
+
+.editform-section h3 {
+
+    font-family: SpectralSC-Reg;
+}
+
+.editform-section p {
+
+    font-family: SpectralSC-Reg;
+}
+
+.editform-section h1 {
+    font-size: 45px;
+    font-family: SpectralSC-Reg;
+
+}
+
+/*Hyperlink*/
+.section a {
+    text-decoration: none;
+    font-weight: bold;
+    color: #F2BD00;
+}
+
+/*Username and Password form*/
+.input-form {
+    border-bottom: 3px solid #CB7A00;
+    background-color: #535353;
+    padding: 7px;
+}
+
+.input-form:hover {
+
+    border-top: 1px solid #F2BD00;
+    border-left: 1px solid #F2BD00;
+    border-right: 1px solid #F2BD00;
+    border-bottom: 3px solid #CB7A00;
+    transition: 0.1s ease all;
+}
+
+/* manages the actual input elements */
+.input-form input {
+    font-family: SpectralSC-Reg;
+    background-color: #535353;
+    color: white;
+    font-size: 15px;
+    outline: none;
+    /* removes the outline from the actual input box */
+    width: 60%;
+}
+
+.btn-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/*Button*/
+.btn {
+    margin-top: 15px;
+    font-family: SpectralSC-Reg;
+    font-size: 19px;
+    font-weight: bold;
+    background-color: #CB7A00;
+    width: 50%;
+    height: 100%;
+    padding: 8px;
+    border: none;
+    border-radius: 7px;
+    color: white;
+}
+
+.btn:hover {
+    background-color: #F2BD00;
+    color: black;
+    transition: background-color 0.2s;
+
+}

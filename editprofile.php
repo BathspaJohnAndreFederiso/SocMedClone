@@ -1,11 +1,3 @@
-<?php
-session_start();
-if (isset($_SESSION['logged_in'])) {
-    header('Location: index.php'); // redirect to index page
-    exit;
-}
-
-?>
 
 <!-- This is the html -->
 <!DOCTYPE html>
@@ -15,7 +7,7 @@ if (isset($_SESSION['logged_in'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mordhub: Login</title>
+    <title>Edit Profile</title>
     <link rel="stylesheet" href="css/login.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
@@ -53,7 +45,7 @@ if (isset($_SESSION['logged_in'])) {
                     
                     <p>Don't have an account? <a href="registration.php">Enlist</a></p>
 
-                    <p>Forgot your Password? <a href="forgetpass.php">Reset</a></p>
+                    <p>Forgot your Password? <a href="ForgetPass.php">Reset</a></p>
 
                     
                     <div class="btn-group"> 

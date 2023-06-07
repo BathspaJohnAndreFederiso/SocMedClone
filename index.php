@@ -37,14 +37,14 @@ session_start();
 
       <?php 
           if (isset($_SESSION['logged_in'])) {
-            echo "
-           <div class='user'>
-           <img src='Assets/Icons/hilt_icon.png' height='100%' width='120px'/>  
-           <div class='names'>  
-           <h1>  Username  </h1>
-           <h3>  username@email.com </h3>
+            echo '
+           <div class="user">
+           <img src="Assets/Icons/hilt_icon.png" height="100%" width="120px"/>  
+           <div class="names">  
+           <h1> '. $_SESSION['name'] .' </h1>
+           <h3> '. $_SESSION['email'] .' </h3>
            </div>
-           </div>";
+           </div>';
           }
 
       ?>
@@ -130,7 +130,7 @@ session_start();
    
          <div>
            <a class="selected">
-           <h3><span style="color: white;">TIMELINE</span></h3>
+           <h3><span style="color: red;">TIMELINE</span></h3>
            </a>
          </div>
 
@@ -145,7 +145,7 @@ session_start();
           </div>
 
           <div>
-            <a>
+            <a href='PHPOnly/logout.php'>
              <h3><span style='color: white;'>LOG OUT</span></h3>
             </a>
           </div>

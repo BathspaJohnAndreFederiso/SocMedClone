@@ -189,31 +189,9 @@
   .options div{
     
     border-bottom: 3px solid #CB7A00;
-    filter: drop-shadow(3px 3px 5px gray);
   }
   .options a{ /* no text-decoration on the links */
     text-decoration:none;
     font-family: SpectralSC-Reg;
   }
-  .selected{ /* set the class for the currently selected community (in index, this is Mordhau)*/
-    background-color: #2D2C2B;
   
-    border-radius: 5px;
-  
-  }
-
-  .create-post{
-    
-    font-family: SpectralSC-Bold;
-    width: 75%;
-    height: 80px;
-    padding: 5px;
-    border-radius: 5px;
-    display: flex;
-    align-items:center;
-    justify-content: center;
-    background-color: #CB7A00;
-    
-    color:black;
-    text-decoration: none;
-  }
