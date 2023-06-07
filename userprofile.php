@@ -1,12 +1,16 @@
 <?php
-session_start();
+if (!isset($_SESSION['logged_in'])) { // this will catch anyone trying to go to the personal user page without loggin in
+    header('Location: index.php'); // redirect to logged_in page
+    exit;
+}
 
-include 'connect.php'; // this file will be used
-$stmt = $conn->prepare('SELECT password, email, join_date FROM accounts WHERE id = ?');
-// In this case we can use the account ID to get the account info.
+include 'PHPOnly/connect.php'; // this file will be used
+
+$stmt = $conn->prepare('SELECT password, email, join_date, pfp FROM accounts WHERE id = ?');
+// we will use the session id to retrieve the corresponding user data.
 $stmt->bind_param('i', $_SESSION['id']);
 $stmt->execute();
-$stmt->bind_result($password, $email);
+$stmt->bind_result($password, $email, $join_date, $pfp);
 $stmt->fetch();
 $stmt->close();
 ?>
@@ -14,16 +18,13 @@ $stmt->close();
 <!DOCTYPE html>
 <html lang="en">
 
-
-
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Profile</title>
+  <title>Personal Profile</title>
   <link rel="stylesheet" href="css/profile.css">
   <link rel="stylesheet" href="css/editprofilemodal.css">
-  <script type="text/javascript" src="modalscript.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
@@ -43,6 +44,7 @@ $stmt->close();
 
         <div class="title">
           <h1>edit profile</h1>
+          <i class="fa fa-times-circle-o close" aria-hidden="true"></i>
         </div>
         
         <form action="PHPOnly/editaccountdetails.php" method="post" autocomplete="off">
@@ -102,7 +104,7 @@ $stmt->close();
 
 
         <div class="pfp">
-          <img src="Assets/Icons/hilt_icon.png" class="pfp" height="200px" width="200px" />
+          <img src="Assets/pfps/<?=$pfp?>" class="pfp" height="200px" width="200px" />
 
           <button id="editBtn" class="editBtn">
             <h3><span style='color: white;'>EDIT PROFILE</span></h3>
@@ -119,11 +121,11 @@ $stmt->close();
 
             <div class="username">
 
-              <h1> POST OWNER </h1>
+              <h1> <?=$_SESSION['name']?> </h1>
 
-              <h3> postowner@email.com</h3>
+              <h3> <?=$email?></h3>
 
-              <p> Joined: 20-09-2023</p>
+              <p> Joined: <?=$join_date?></p>
 
 
             </div>

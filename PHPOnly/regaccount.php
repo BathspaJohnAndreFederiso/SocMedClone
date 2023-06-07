@@ -35,7 +35,7 @@ if ($stmt = $conn->prepare('SELECT id, password FROM accounts WHERE email = ?'))
 
 if($_POST['password1'] === $_POST['password2']){ // check if passwords match
 
- if ($stmt = $conn->prepare('SELECT id, password FROM crocaccounts WHERE username = ?') ) { // $stmt variable connects to database with a prepared statement
+ if ($stmt = $conn->prepare('SELECT id, password FROM accounts WHERE username = ?') ) { // $stmt variable connects to database with a prepared statement
     // prepared statement selects the id and password from crocaccounts associated with a provided username parameter
 	// Bind parameters (s = string, i = int, b = blob, etc), in our case the username is a string so we use "s"
     // the username form will now be expecting a string value to be entered, minimizing the risk 
@@ -51,7 +51,7 @@ if($_POST['password1'] === $_POST['password2']){ // check if passwords match
     } else {
 
         // code that runs if there is no existing username already
-        if($stmt = $conn->prepare('INSERT INTO crocaccounts (username, password, email, join_date) VALUES (?, ?, ?, NOW())')){
+        if($stmt = $conn->prepare('INSERT INTO accounts (username, password, email) VALUES (?, ?, ?)')){
             $password = password_hash($_POST['password1'], PASSWORD_DEFAULT);
             $stmt->bind_param('sss', $_POST['username'], $password, $_POST['email']);
             $stmt->execute();

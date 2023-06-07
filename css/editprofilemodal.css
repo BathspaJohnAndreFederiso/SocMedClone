@@ -34,7 +34,14 @@
     color: black;
     transition: background-color 0.2s;
 }
-
+.close{
+    cursor: pointer;
+    position: absolute;
+    z-index: 2;
+    left: 630px;
+    color: white;
+    
+}
 .modal {
     display: none;
     /* hide by default */
