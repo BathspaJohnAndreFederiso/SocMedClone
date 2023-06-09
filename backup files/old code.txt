@@ -116,3 +116,97 @@ if($_POST['password1'] === $_POST['password2']){ // check if passwords match
     header ("Location: Registration.php");
 }
 ?>
+
+
+
+
+
+
+
+
+
+---------------- SETTING USER BIO -------------------------
+
+
+
+
+
+              <form action="PHPOnly/setbio.php" method="post">
+
+                <textarea id="userBio" name="userBio" rows="4" cols="50" maxlength="200"
+                  placeholder="<?= $bio ?>"></textarea>
+
+
+                <p id="error-msg">
+                  <!-- element for displaying error messages, hidden if there are no messages -->
+                  <?php
+                  if (isset($_SESSION["Error"])) { // if session tag for error is set
+                    echo $_SESSION['Error']; // echo the value of error
+                    unset($_SESSION['Error']); // immediately unset the tag so it doesn't show up after refreshing the page
+                  }
+                  ?>
+                </p>
+
+                <input class="bio-btn" type="submit" name="save" id="save" value="SAVE">
+
+              </form>
+
+
+
+
+
+
+
+
+
+
+--------------------- POST LAYOUT -----------------------------------
+
+
+
+        <div class="post">
+
+          <div class="user-info">
+            <img src="Assets/Icons/hilt_icon.png" class="pfp" height="100%" width="60px" />
+
+            <div class="username">
+             
+                <h1> POST OWNER </h1>
+
+                <p> postowner@email.com, 5 minutes ago</p>
+            
+
+            </div>
+
+
+          </div>
+
+
+          <div class="post-content">
+
+
+
+            <div class="post-media">
+              <img src="Assets/PostMedia/mordhau_banner.png" class="pfp" height="100%" width="100%" />
+            </div>
+
+            <div class="post-text">
+              <p>
+                Looking for duelyards. Any recs?
+              </p>
+            </div>
+
+            <div class="post-options">
+
+              <a class="reply-option" href="createpost.php"> REPLY </a>
+
+              <a class="tag" style="background-color: #CB7A00; color: black;"> QUERY </a>
+
+
+            </div>
+
+
+          </div>
+
+
+        </div>

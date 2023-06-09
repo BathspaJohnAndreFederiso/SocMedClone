@@ -45,7 +45,6 @@
      /* manages the position of the section div */
      background-color: #2D2C2B;
      /* changes background color */
-     flex-direction: space-between;
      display: flex;
      align-items: center;
      justify-content: center;
@@ -81,7 +80,6 @@
      justify-content: center;
    }
 
-   /*Forget Password Section*/
    .form-section h1,
    .form-section h3,
    .form-section p {

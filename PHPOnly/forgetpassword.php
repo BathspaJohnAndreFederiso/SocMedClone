@@ -2,12 +2,12 @@
 <?php
 // Start the session, this needs to be done before the first HTML tag
 
-include 'connection.php';
+include 'connect.php';
 
 if (!isset($_POST['email'], $_POST['password1'], $_POST['password2'])) {
 	// Could not get the data that should have been sent.
 	$_SESSION["Error"] = "Please complete all forms!";
-    header ("Location: forgetpass.php");
+    header ("Location: ../forgetpass.php");
     exit();
 }
 
@@ -39,12 +39,12 @@ if($_POST['password1'] === $_POST['password2']){ // check if the two password fo
         }else{
             //  somehow the SQL got an error here, check if the table has the account fields used in the if-statement.
 	        $_SESSION["Error"] = "SQL Error. Please contact the developers for database fixes.";
-            header ("Location: forgetpass.php");
+            header ("Location: ../forgetpass.php");
         }
 
     } else {
         $_SESSION["Error"] = "This email does not exist in our database.";
-        header ("Location: forgetpass.php");
+        header ("Location: ../forgetpass.php");
         exit();
     }
 
@@ -55,5 +55,5 @@ if($_POST['password1'] === $_POST['password2']){ // check if the two password fo
 
 } else{
     $_SESSION["Error"] = "Passwords do not match!";
-    header ("Location: forgetpass.php");
+    header ("Location: ../forgetpass.php");
 }

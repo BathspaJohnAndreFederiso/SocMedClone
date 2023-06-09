@@ -32,7 +32,7 @@ if (isset($_SESSION['logged_in'])) {
 
                     <div class="input-form">
                         <input style="border: none;" class="input-field" type="text" name="username" id="username"
-                            placeholder="Username" required />
+                            placeholder="Username" maxlength="20" required />
                     </div>
                     <br>
 

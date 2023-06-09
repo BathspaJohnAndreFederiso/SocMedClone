@@ -23,6 +23,8 @@
     border: 1px solid red;
   }
   */
+  
+
   body{
     margin: 0 auto;
     background-color: #2D2C2B;
@@ -54,7 +56,7 @@
   
 
   .text-boxes{
-    height: 790px;
+    height: 530px;
     display: flex;
     justify-content: space-between;
     width: 80%;
@@ -79,6 +81,9 @@
     border-radius: 5px;
   
   }
+  .pfp img{
+    object-fit: contain;
+  }
   .update-pfp{
     
     display: flex;
@@ -87,7 +92,6 @@
   .pfp-upload{
     width: 200px;
   }
-
   input{
     
     font-family: Mont;
@@ -153,8 +157,20 @@
   }
   .about{
     display: flex;
-    align-items: top;
+    flex-direction: column;
+    color:white;
   }
+  .about h4{
+    
+    line-height: 0.1;
+  }
+  .bio{
+    border: 1px solid #535353;
+    border-radius: 5px;
+    font-size: 14px;
+    
+  }
+
   
   
   .right{

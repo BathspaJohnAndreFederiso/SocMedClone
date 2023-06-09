@@ -16,8 +16,22 @@
 
 }
 
-.editBtn {
 
+.error-msg{
+    font-size: 11px;
+}
+
+.editBio {
+    background-color: #CB7A00;
+    font-family: SpectralSC-Reg;
+    font-size: 12px;
+    width: 20%;
+    border: none;
+    border-radius: 3px;
+    margin-top: 10px;
+    margin-left: 450px;
+}
+.editBtn {
     font-family: SpectralSC-Reg;
     font-size: 14px;
     font-weight: bold;
@@ -34,22 +48,24 @@
     color: black;
     transition: background-color 0.2s;
 }
-.close{
+
+.close {
     cursor: pointer;
     position: absolute;
     z-index: 2;
-    left: 630px;
+    left: 1060px;
     color: white;
-    
+
 }
+
 .modal {
     display: none;
     /* hide by default */
     position: fixed;
+    align-items: center;
+    justify-content: center;
     /* stay on the spot */
     z-index: 1;
-    /* Sit on top */
-    padding-top: 100px;
     /* Location of the box */
     left: 0;
     top: 0;
@@ -67,7 +83,6 @@
     /* manages the position of the section div */
     background-color: #2D2C2B;
     /* changes background color */
-    flex-direction: space-between;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -80,7 +95,30 @@
     /* rounds the corners and hides overflowing hidden */
     box-shadow: 0 8px 8px 3px rgb(41, 40, 40, 0.4);
 
+    -webkit-animation-name: fade-in;
+    -webkit-animation-duration: 0.4s;
+    animation-name: fade-in;
+    animation-duration: 0.4s
+}
 
+@-webkit-keyframes fade-in {
+    from {
+        opacity: 0
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0
+    }
+
+    to {
+        opacity: 1
+    }
 }
 
 /* This is where the login section is*/
@@ -183,6 +221,106 @@
 .btn:hover {
     background-color: #F2BD00;
     color: black;
+    transition: background-color 0.2s;
+
+}
+
+/* css for the modal of the user bio */
+.modal-bio {
+    display: none;
+    flex-direction: column;
+    color: white;
+    align-items: top;
+
+    display: none;
+    /* hide by default */
+    position: fixed;
+    align-items: center;
+    justify-content: center;
+    /* stay on the spot */
+    z-index: 1;
+    /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    /* Full width and height */
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+
+    -webkit-animation-name: fade-in;
+    -webkit-animation-duration: 0.4s;
+    animation-name: fade-in;
+    animation-duration: 0.4s
+}
+.bio-area{
+     /* manages the position of the section div */
+     background-color: #2D2C2B;
+     /* changes background color */
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     /* centers the objects within */
+     padding: 0 0 25px 0;
+     width: 100%;
+     /* manages the height and width */
+     border-radius: 5px;
+     overflow: hidden;
+     /* rounds the corners and hides overflowing hidden */
+     box-shadow: 0 8px 8px 3px rgb(41, 40, 40, 0.4);
+ 
+     -webkit-animation-name: fade-in;
+     -webkit-animation-duration: 0.4s;
+     animation-name: fade-in;
+     animation-duration: 0.4s
+}
+.bio-title{
+    font-family: Mont;
+    display: flex;
+
+    align-items: center;
+    line-height: 0.2;
+    justify-content: center;
+}
+.close2{
+    cursor: pointer;
+    position: absolute;
+    z-index: 2;
+    left: 1060px;
+    color: white;
+}
+.modal-bio form {
+    width: 40%;
+}
+
+.modal-bio textarea {
+    outline: none;
+    border-top: 2px solid #CB7A00;
+    border-left: 2px solid #CB7A00;
+    width: 100%;
+    color: white;
+    border-radius: 5px;
+    font-family: Mont;
+    background-color: transparent;
+}
+
+.bio-btn {
+    font-family: SpectralSC-Reg;
+    font-size: 12px;
+    font-weight: bold;
+    background-color: #CB7A00;
+    width: 25%;
+    height: 50%;
+    padding: 3px;
+    border: none;
+    border-radius: 7px;
+    color: white;
+}
+.bio-btn:hover, .editBio:hover{
+    
+    background-color: #642528;
+    box-shadow: 3px 3px 1px #212020;
     transition: background-color 0.2s;
 
 }
