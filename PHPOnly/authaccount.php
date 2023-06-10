@@ -5,9 +5,9 @@ include 'connect.php'; // this file will be used by login.php in its login form
 
 if (!isset($_POST['username'], $_POST['password']) ) { // error checking if session tags for 'username' and 'password' are not set
 	// displays this message to user
-    $_SESSION["errormsg"] = "Please fill the username and password!";
+    $_SESSION["Error"] = "Please fill the username and password!";
     
-    header ("Location: login.php");
+    header ("Location: ../login.php");
 }
 
 if ($stmt = $conn->prepare('SELECT id, password, email FROM accounts WHERE username = ?')) { // $stmt variable connects to database with a prepared statement

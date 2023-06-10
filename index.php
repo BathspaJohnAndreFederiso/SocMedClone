@@ -1,7 +1,284 @@
 <?php
 
 include 'PHPOnly/connect.php'; // this file will be used
-include 'PHPOnly/insertPost.php'; // this file will also be used
+
+function show_replies($replies, $parent_id)
+{
+  $postreplies = '';
+  if ($parent_id) {
+    // If the comments are replies sort them by the "submit_date" column
+    array_multisort(array_column($replies, 'date'), SORT_ASC, $replies);
+
+    // Iterate the replies using the foreach loop
+    foreach ($replies as $reply) {
+      if ($reply['parent_id'] == $parent_id) {
+        // Add the comment to the $post-replies variable
+        $postreplies .= '
+
+        <div class="post-replies">
+
+        <h3>REPLIES</h3>
+
+        <div class="reply">
+          <div class="replyauthor-info">
+            <img src="Assets/Icons/'. $reply['pfp'] .'" class="pfp" height="50%" width="30px" />
+            <div class="replyauthorname">
+
+              <h1>'. $reply['username'] .'</h1>
+
+              <p> <span style="color: gray;">'. $reply['email'] .', '. $reply['date'] .'<span></p>
+
+            </div>
+
+          </div>
+
+           <div class="reply-text">
+             <p>
+             '. $reply['reply_content'] .'
+             </p>
+           </div>
+          </div>  
+      </div>
+
+        '; // reply html format goes above in $postreplies
+      }
+    }
+  }
+  return $postreplies;
+}
+
+
+function createCommentRow($data)
+{
+
+
+
+  if (empty($data['img'])) {
+
+    $response = '
+    
+  <div class="post">
+
+  <div class="postauthor-info">
+    <img src="Assets/pfps/' . $data['pfp'] . '" class="pfp" height="100%" width="60px" />
+
+    <div class="authorname">
+
+      <h1> ' . $data['name'] . ' </h1>
+
+      <p> <span style="color: gray;"> ' . $data['email'] . ',  ' . $data['date'] . ' <span></p>
+
+    </div>
+
+
+  </div>
+  <hr>
+
+  <div class="post-content">
+
+
+
+
+    <div class="post-text">
+      <p>
+      ' . $data['content'] . ' 
+      </p>
+    </div>
+
+
+    <div class="below-post"> 
+    
+    <div class="post-options">    ';
+
+
+
+    if (isset($_SESSION['logged_in'])) {
+      $response .= '
+    
+       <button id="like-post" class="reply-option" style="margin-right: 15px;">LIKE</button> 
+
+
+   
+      ';
+
+      if ($_SESSION['id'] == $data['owner_id']) {
+        $response .= '
+    
+        <button id="create-edit" class="reply-option" style="margin-right: 15px;">EDIT</button>
+ 
+    
+       ';
+
+      }
+
+
+    }
+
+    $response .= '
+
+    </div>
+
+      <a class="tag" style="background-color: lightgray; color: black;"> ' . $data['tag'] . ' </a>
+    </div>';
+
+
+    if (isset($_SESSION['logged_in'])) {
+      $response .= '
+      <form class="reply-section" action="PHPOnly/InsertReply.php" method="post">
+    <textarea id="contents" name="reply_content" rows="4" cols="50" maxlength="150"
+     placeholder="Reply Here..."></textarea>
+     <input type="hidden" name="parent_id" id="parent_id" value="'.$data['id'].'">
+
+     
+     <input class="reply-btn" type="submit" name="post-reply" id="post-reply" value="R E P L Y">
+     
+    </form>
+  
+      ';
+
+    }
+
+    $response .= '
+
+    
+    
+  </div>
+
+
+    
+
+  
+
+
+  </div>
+  
+  ';
+
+  } else {
+
+
+    $response = '
+    
+  <div class="post">
+
+  <div class="postauthor-info">
+    <img src="Assets/pfps/' . $data['pfp'] . '" class="pfp" height="100%" width="60px" />
+
+    <div class="authorname">
+
+      <h1> ' . $data['name'] . ' </h1>
+
+      <p> <span style="color: gray;"> ' . $data['email'] . ',  ' . $data['date'] . ' <span></p>
+
+    </div>
+
+
+  </div>
+  <hr>
+
+  <div class="post-content">
+
+    
+    <div class="post-media">
+    <img src="Assets/PostMedia/' . $data['img'] . '" class="pfp" height="50%" width="50%" />
+    </div>
+
+
+    <div class="post-text">
+      <p>
+      ' . $data['content'] . ' 
+      </p>
+    </div>
+
+
+    <div class="below-post"> 
+    <div class="post-options">
+    ';
+
+
+
+    if (isset($_SESSION['logged_in'])) {
+      $response .= '
+    
+       <button id="like-post" class="reply-option" style="margin-right: 15px;">LIKE</button> 
+
+
+   
+      ';
+
+      if ($_SESSION['id'] == $data['owner_id']) { // check if session id is equal to the id of the author of this post
+        // let the current logged in id owner be able to edit the post
+        $response .= ' 
+    
+        <button id="create-edit" class="reply-option" style="margin-right: 15px;">EDIT</button>
+ 
+    
+       ';
+
+      }
+    }
+
+    $response .= '
+     </div>
+      <a class="tag" style="background-color: lightgray; color: black;"> ' . $data['tag'] . ' </a>
+    </div>';
+
+
+    if (isset($_SESSION['logged_in'])) {
+      $response .= '
+      <form class="reply-section" action="">
+    <textarea id="contents" name="contents" rows="4" cols="50" maxlength="400"
+     placeholder="Reply Here..."></textarea>
+
+     
+     <input class="reply-btn" type="submit" name="post-reply" id="post-reply" value="R E P L Y">
+     
+    </form>
+  
+      ';
+
+    }
+
+    $response .= '
+
+    
+    
+  </div>
+
+
+    
+
+
+
+
+  </div>
+
+
+  </div>
+  
+  ';
+
+
+
+  }
+
+  return $response;
+}
+
+if (isset($_POST['getAllComments'])) {
+  $start = $conn->real_escape_string($_POST['start']);
+  $response = "";
+  $sql = $conn->query(query: "SELECT name, mordhaucomments.owner_id, mordhaucomments.id, mordhaucomments.email, mordhaucomments.pfp, content, mordhaucomments.tag, mordhaucomments.img, date FROM mordhaucomments INNER JOIN accounts ON mordhaucomments.owner_id = accounts.id ORDER BY mordhaucomments.id DESC LIMIT $start, 20");
+  
+  while ($data = $sql->fetch_assoc()) {
+    $response .= createCommentRow($data);
+
+  }
+
+  exit($response);
+
+}
+
 
 
 $stmt = $conn->prepare('SELECT pfp FROM accounts WHERE id = ?');
@@ -10,7 +287,14 @@ $stmt->bind_param('i', $_SESSION['id']);
 $stmt->execute(); // execute the prepared statement using the binded parameter
 $stmt->bind_result($pfp);
 $stmt->fetch();
+
 $stmt->close(); // bind to a variable, fetch then close
+
+$stmt2 = $conn->prepare("SELECT id FROM mordhaucomments");
+$stmt2->execute();
+$numComments = $stmt2->num_rows;
+
+$stmt2->close(); // bind to a variable, fetch then close
 
 ?>
 
@@ -25,6 +309,9 @@ $stmt->close(); // bind to a variable, fetch then close
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mordhub: Home</title>
   <link rel="stylesheet" href="css/index.css">
+
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="css/postmodal.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
@@ -106,7 +393,7 @@ $stmt->close(); // bind to a variable, fetch then close
         </div>
         <hr>
 
-        <form action="PHPOnly/createpost.php" enctype="multipart/form-data" method="post" autocomplete="off">
+        <form action="PHPOnly/insertPostBasic.php" enctype="multipart/form-data" method="post" autocomplete="off">
 
           <textarea id="contents" name="contents" rows="4" cols="50" maxlength="400"
             placeholder="Post here..."></textarea>
@@ -174,96 +461,7 @@ $stmt->close(); // bind to a variable, fetch then close
       </div>
 
       <div class="center">
-
-        <div class="post">
-
-          <div class="postauthor-info">
-            <img src="Assets/Icons/hilt_icon.png" class="pfp" height="100%" width="60px" />
-
-            <div class="authorname">
-
-              <h1> POST OWNER </h1>
-
-              <p> <span style="color: gray;">postowner@email.com, 5 minutes ago<span></p>
-
-            </div>
-
-
-          </div>
-          <hr>
-
-          <div class="post-content">
-
-
-
-            <div class="post-media">
-              <img src="Assets/PostMedia/mordhau_banner.png" class="pfp" height="100%" width="100%" />
-            </div>
-
-            <div class="post-text">
-              <p>
-                Looking for duelyards. Any recs?
-              </p>
-            </div>
-
-
-            <div class="below-post">
-
-              <div class="post-options">
-                <a class="reply-option" style="margin-right: 15px;"> <button id="like-post">LIKE</button> </a>
-
-                <a class="reply-option" style="margin-right: 15px;"> <button id="create-edit">EDIT</button> </a>
-
-                <a class="reply-option"> <button id="create-reply">REPLY</button> </a>
-              </div>
-
-              <a class="tag" style="background-color: #CB7A00; color: black;"> QUERY </a>
-            </div>
-
-            <div class="post-replies">
-
-              <h3>REPLIES</h3>
-
-              <div class="reply">
-                <div class="replyauthor-info">
-                  <img src="Assets/Icons/hilt_icon.png" class="pfp" height="50%" width="30px" />
-                  <div class="replyauthorname">
-
-                    <h1> POST OWNER 2</h1>
-
-                    <p> <span style="color: gray;">postowner2@email.com, 2 minutes ago<span></p>
-
-                  </div>
-
-                  <a class="reply-option subreply" style="margin-right: 15px;"> <button id="like-post">LIKE</button>
-                  </a>
-
-                  <a class="reply-option subreply" style="margin-right: 15px;"> <button id="create-edit">EDIT</button>
-                  </a>
-
-                </div>
-
-                <div class="reply-text">
-                  <p>
-                    Avoid Nukan's Duels EU, bad admin
-                  </p>
-                </div>
-
-
-              </div>
-
-
-
-            </div>
-
-
-
-          </div>
-
-
-        </div>
-
-
+        <!-- This is where the comments live -->
 
 
 
@@ -280,24 +478,24 @@ $stmt->close(); // bind to a variable, fetch then close
 
           <div class="options">
 
-         
 
-              <p id="error-msg">
-                <!-- element for displaying error messages, hidden if there are no messages -->
-                <?php
-                if (isset($_SESSION["Error"])) { // if session tag for error is set
-                  echo "
+
+            <p id="error-msg">
+              <!-- element for displaying error messages, hidden if there are no messages -->
+              <?php
+              if (isset($_SESSION["Error"])) { // if session tag for error is set
+                echo "
                     <div>
-                    ". $_SESSION['Error'] ."
+                    " . $_SESSION['Error'] . "
                     </div>
                   
                   "; // echo the value of error
-                  unset($_SESSION['Error']); // immediately unset the tag so it doesn't show up after refreshing the page
-                }
-                ?>
-              </p>
+                unset($_SESSION['Error']); // immediately unset the tag so it doesn't show up after refreshing the page
+              }
+              ?>
+            </p>
 
-        
+
 
 
 
@@ -365,38 +563,84 @@ $stmt->close(); // bind to a variable, fetch then close
     </div>
 
   </div>
-
-
-
-
   <script>
     // Get the modal
     var modal = document.getElementById("postModal");
-
     // Get the button that opens the modal
     var btn = document.getElementById("create-post");
-
-    var modal2 = document.getElementById("replyModal");
-    var btn2 = document.getElementById("create-reply");
-
     var span = document.getElementsByClassName("close")[0];
 
     // When the user clicks the button, open the modal 
     btn.onclick = function () {
       modal.style.display = "flex";
-    }
+    };
 
     // When the user clicks on <span> (x), close the modal
     span.onclick = function () {
       modal.style.display = "none";
-    }
+    };
 
     // if the user clicks outside of the modal, close the modal
     window.onclick = function (event) {
       if (event.target == modal) {
         modal.style.display = "none";
       }
-    }
+    };
+  </script>
+
+  <script>
+    // Get the modal
+    //var modal2 = document.getElementById("replyModal");
+    // Get the button that opens the modal
+    //var btn2 = document.getElementById("create-reply");
+    //var span2 = document.getElementsByClassName("close2")[0];
+
+    // When the user clicks the button, open the modal
+    //btn2.onclick = function () {
+      //modal2.style.display = "flex";
+    //};
+
+    // When the user clicks on <span> (x), close the modal
+    //span2.onclick = function () {
+      //modal2.style.display = "none";
+    //};
+
+    // if the user clicks outside of the modal, close the modal
+    //window.onclick = function (event) {
+      //if (event.target == modal) {
+        //modal2.style.display = "none";
+      //}
+    //};
+  </script>
+
+
+  <script id="this-is-AJAX" type="text/javascript">
+
+
+
+    $(document).ready(function () {
+
+      getAllComments(0, <?php echo $numComments ?>);
+    });
+
+    function getAllComments(start, max) {
+      if (start > max) {
+        return;
+      }
+
+      $.ajax({
+        url: 'index.php',
+        method: 'post',
+        dataType: 'text',
+        data: {
+          getAllComments: 1,
+          start: start
+        }, success: function (response) {
+          $(".center").append(response);
+          getAllComments((start + 20), max);
+        }
+      })
+    };
   </script>
 
 

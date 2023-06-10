@@ -90,6 +90,8 @@ $stmt->close();
 
           <p>Forgot your Password? <a href="forgetpass.php">Reset</a></p>
 
+          <p>Want to delete your account? <a href="PHPOnly/deleteaccount.php">Delete</a></p>
+
           <div class="btn-group">
 
             <input class="btn" type="submit" name="update" id="update" value="UPDATE">

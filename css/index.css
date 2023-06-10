@@ -33,7 +33,7 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    background: red;
+    background: green;
   }
 
   ::-webkit-scrollbar-thumb:hover {
@@ -62,7 +62,7 @@
     background: url("../Assets/Images/mordhau_banner.png");
     background-repeat: no-repeat;
     background-size: 100%;
-    height: 150px;
+    height: 100px;
   }
 
 
@@ -85,7 +85,7 @@
   }
 
   .center {
-
+    
     border-radius: 5px;
     height: 900px;
     width: 50%;
@@ -106,6 +106,7 @@
 
   .post {
     border-bottom: 3px solid #CB7A00;
+
   }
 
   .post-text {
@@ -116,31 +117,40 @@
     height: 100%;
     min-width: 50%;
   }
+
   /*
   *{
     border: 1px solid red;
   }
   */
-  .post-replies{
+  .post-replies {
     font-family: Mont;
     color: white;
   }
-  .post-replies h3{
+
+  .post-replies h3 {
     font-size: 15px;
   }
-  .reply{
-    
+
+  .post-media {
+    display: flex;
+    justify-content: center;
+  }
+
+  .reply {
+
     background-color: #323232;
   }
+
   .replyauthor-info {
 
     font-family: SpectralSC-Reg;
     display: flex;
     flex-direction: row;
     align-items: center;
-    border-bottom: 1px solid white; 
+    border-bottom: 1px solid white;
   }
-  
+
   .replyauthorname {
     line-height: 0.2;
     width: 100%;
@@ -158,12 +168,14 @@
     font-family: Mont;
     font-size: 10px;
   }
-  .reply-text{
-    display:flex;
+
+  .reply-text {
+    display: flex;
     font-family: Mont;
     color: white;
     font-size: 11px;
   }
+
   .authorname {
     line-height: 0.2;
     width: 100%;
@@ -220,11 +232,11 @@
   }
 
   .names h1 {
-    font-size: 25px;
+    font-size: 20px;
   }
 
   .names h3 {
-    font-size: 10px;
+    font-size: 9.5px;
   }
 
   .cover {
@@ -232,7 +244,7 @@
   }
 
   .info {
-  
+
     background-color: #535353;
     color: white;
   }
@@ -281,7 +293,7 @@
 
   .options {
     /* manages class options, which contain the actual links to other pages */
-    
+
     border-radius: 5px;
     font-family: SpectralSC-Bold;
     color: black;
@@ -300,22 +312,60 @@
     color: white;
   }
 
-  .options a:hover{
-    
+  .options a:hover {
+
     transition: 0.2s ease-in-out;
     color: #cb1800;
   }
-  .post-options{
-    display: flex; 
+
+  .post-options {
+    display: flex;
     flex-direction: row;
   }
-  
+
+  .reply-section {
+
+    display: flex;
+    flex-direction: column;
+  }
+
+  .reply-btn {
+    font-size: 10px;
+    width: 20%;
+    font-family: SpectralSC-Reg;
+    font-weight: bold;
+    background-color: #CB7A00;
+    border: none;
+  }
+
+  .reply-btn:hover {
+    background-color: #F2BD00;
+    color: black;
+    transition: background-color 0.2s;
+
+  }
+
+
+  .post-content textarea {
+
+    outline: none;
+    border-top: 2px solid #CB7A00;
+    border-left: 2px solid #CB7A00;
+    width: 60%;
+    color: white;
+    border-radius: 5px;
+    font-family: Mont;
+    font-size: 12px;
+    background-color: transparent;
+  }
+
   .below-post {
     margin-top: 5px;
     display: flex;
     align-items: center;
     flex-direction: row-reverse;
     justify-content: space-between;
+
     height: 100%;
   }
 
@@ -324,33 +374,38 @@
     color: white;
     font-weight: bold;
     font-family: Mont;
-    
+
   }
-  .subreply button{
+
+  .subreply button {
     font-size: 10px;
   }
-  .reply-option{
+
+  .reply-option {
     padding: 5px;
     border-radius: 6px;
+    border: none;
     border-right: 2px solid white;
     border-left: 2px solid white;
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-  .reply-option button{
+    
     background: transparent;
-    border: none;
+
     color: white;
     font-weight: bold;
     font-family: Mont;
+    cursor: pointer;
   }
+
   .tag {
     padding: 5px 15px;
     border-radius: 3px;
     font-family: Mont;
     color: black;
-    font-size: 14px;
+    font-size: 10px;
+    text-align: center;
   }
 
 
@@ -370,10 +425,8 @@
     text-decoration: none;
   }
 
-  .create-post:hover{
-    
+  .create-post:hover {
+
     transition: 0.2s ease-in-out;
     background-color: #cb1800;
   }
-
-

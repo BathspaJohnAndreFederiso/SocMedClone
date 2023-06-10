@@ -1,5 +1,5 @@
 <?php
-
+include '../PHPOnly/connect.php'; // this file will be used
 
 $stmt = $conn->prepare('SELECT email, username, pfp FROM accounts WHERE id = ?');
 // we will use the session id to retrieve the corresponding user data.
@@ -16,13 +16,13 @@ $stmt->close();
 if (isset($_POST['createPost'])) {
     $uid = $_SESSION["id"];
     
-    $content = $_POST["contents"];
-    $tag = $_POST["tag"];
+    $content = htmlspecialchars($_POST["contents"]);
+    $tag = htmlspecialchars($_POST["tag"]);
 
     if (!file_exists($_FILES['img-upload']['tmp_name']) && !is_uploaded_file($_FILES['img-upload']['tmp_name'])) {
 
-        // this is an alternate post submission without the img being included                          1  2  3  4  5  6  values to send
-        $stmt = $conn->prepare('INSERT INTO comments (owner_id, name, email, pfp, tag, content) VALUES (?, ?, ?. ?, ?, ?)');
+        // this is an alternate post submission without the img being included                                 1  2  3  4  5  6  values to send
+        $stmt = $conn->prepare('INSERT INTO mordhaucomments (owner_id, name, email, pfp, tag, content) VALUES (?, ?, ?, ?, ?, ?)');
         $stmt->bind_param('isssss', $uid, $username, $email, $pfp,  $tag, $content);
         $stmt->execute();
         header('Location: ../index.php'); // send the user on their merry way to index.php (this is the home screen)
@@ -52,7 +52,7 @@ if (isset($_POST['createPost'])) {
                 if ($upload) { // upload complete, lets run the SQL update statement
 
                     // code that will insert comment info into the database, with image                                      1  2  3  4  5  6  7 to send
-                    if ($stmt = $conn->prepare('INSERT INTO comments (owner_id, name, email, pfp, img, tag, content) VALUES (?, ?, ?, ?, ?, ?, ?)')) {
+                    if ($stmt = $conn->prepare('INSERT INTO mordhaucomments (owner_id, name, email, pfp, img, tag, content) VALUES (?, ?, ?, ?, ?, ?, ?)')) {
 
                         $stmt->bind_param('issssss', $uid, $username, $email, $pfp, $imgName, $tag, $content);
                         $stmt->execute(); // execute
