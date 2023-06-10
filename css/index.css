@@ -382,6 +382,9 @@
     font-family: Mont;
     cursor: pointer;
   }
+  .reply-option:hover{
+    color: red;
+  }
 
   .tag {
     padding: 5px 15px;

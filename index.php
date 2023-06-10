@@ -78,31 +78,6 @@ function createCommentRow($data)
     
     <div class="post-options">    ';
 
-
-
-    if (isset($_SESSION['logged_in'])) {
-      $response .= '
-    
-       <button id="like-post" class="reply-option" style="margin-right: 15px;">LIKE</button> 
-
-
-   
-      ';
-
-      if ($_SESSION['id'] == $data['owner_id']) {
-        $response .= '
-        
-    
-        <button id="create-edit" class="reply-option" style="margin-right: 15px;">EDIT</button>
- 
-    
-       ';
-
-      }
-
-
-    }
-
     $response .= '
 
     </div>
@@ -201,30 +176,6 @@ function createCommentRow($data)
       
       <div class="post-options">    ';
   
-  
-  
-      if (isset($_SESSION['logged_in'])) {
-        $response .= '
-      
-         <button id="like-post" class="reply-option" style="margin-right: 15px;">LIKE</button> 
-  
-  
-     
-        ';
-  
-        if ($_SESSION['id'] == $data['owner_id']) {
-          $response .= '
-          
-      
-          <button id="create-edit" class="reply-option" style="margin-right: 15px;">EDIT</button>
-   
-      
-         ';
-  
-        }
-  
-  
-      }
   
       $response .= '
   
