@@ -210,3 +210,191 @@ if($_POST['password1'] === $_POST['password2']){ // check if passwords match
 
 
         </div>
+
+
+
+
+
+
+
+
+
+
+
+---------------------------------------- NEW POST LAYOUT ------------------------------------------------------
+
+ <div class="post">
+
+          <div class="postauthor-info">
+            <img src="Assets/Icons/hilt_icon.png" class="pfp" height="100%" width="60px" />
+
+            <div class="authorname">
+
+              <h1> POST OWNER </h1>
+
+              <p> <span style="color: gray;">postowner@email.com, 5 minutes ago<span></p>
+
+
+            </div>
+
+
+          </div>
+          <hr>
+
+          <div class="post-content">
+
+
+
+            <div class="post-media">
+              <img src="Assets/PostMedia/mordhau_banner.png" class="pfp" height="100%" width="100%" />
+            </div>
+
+            <div class="post-text">
+              <p>
+                Looking for duelyards. Any recs?
+              </p>
+            </div>
+
+
+            <div class="post-options">
+
+              <a class="reply-option" href="createreply.php"> REPLY </a>
+
+              <a class="tag" style="background-color: #CB7A00; color: black;"> QUERY </a>
+
+
+            </div>
+
+            <div class="post-replies">
+
+              <h3>REPLIES</h3>
+
+              <div class="reply">
+                <div class="replyauthor-info">
+                  <img src="Assets/Icons/hilt_icon.png" class="pfp" height="50%" width="30px" />
+                  <div class="replyauthorname">
+
+                    <h1> POST OWNER 2</h1>
+
+                    <p> <span style="color: gray;">postowner2@email.com, 2 minutes ago<span></p>
+
+                  </div>
+
+                </div>
+
+                <div class="reply-text">
+                  <p>
+                    Avoid Nukan's Duels EU, bad admin
+                  </p>
+                </div>
+              </div>
+
+
+
+            </div>
+
+
+
+          </div>
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+------------------------------- NEWER POST LAYOUT ---------------------------------------------------------
+
+
+        <div class="post">
+
+          <div class="postauthor-info">
+            <img src="Assets/Icons/hilt_icon.png" class="pfp" height="100%" width="60px" />
+
+            <div class="authorname">
+
+              <h1> POST OWNER </h1>
+
+              <p> <span style="color: gray;">postowner@email.com, 5 minutes ago<span></p>
+
+
+            </div>
+
+
+          </div>
+          <hr>
+
+          <div class="post-content">
+
+
+
+            <div class="post-media">
+              <img src="Assets/PostMedia/mordhau_banner.png" class="pfp" height="100%" width="100%" />
+            </div>
+
+            <div class="post-text">
+              <p>
+                Looking for duelyards. Any recs?
+              </p>
+            </div>
+
+
+            <div class="below-post">
+
+              <div class="post-options">
+                <a class="reply-option" style="margin-right: 15px;"> <button id="like-post">LIKE</button> </a>
+
+                <a class="reply-option" style="margin-right: 15px;"> <button id="create-edit">EDIT</button> </a>
+   
+                <a class="reply-option"> <button id="create-reply">REPLY</button> </a>
+              </div>
+
+              <a class="tag" style="background-color: #CB7A00; color: black;"> QUERY </a>
+            </div>
+
+            <div class="post-replies">    
+
+              <h3>REPLIES</h3>
+
+              <div class="reply">
+                <div class="replyauthor-info">
+                  <img src="Assets/Icons/hilt_icon.png" class="pfp" height="50%" width="30px" />
+                  <div class="replyauthorname">
+
+                    <h1> POST OWNER 2</h1>
+
+                    <p> <span style="color: gray;">postowner2@email.com, 2 minutes ago<span></p>
+
+                  </div>
+
+                  <a class="reply-option subreply" style="margin-right: 15px;"> <button id="like-post">LIKE</button> </a>
+
+                  <a class="reply-option subreply" style="margin-right: 15px;"> <button id="create-edit">EDIT</button> </a>
+
+                </div>
+
+                <div class="reply-text">
+                  <p>
+                    Avoid Nukan's Duels EU, bad admin
+                  </p>
+                </div>
+
+                
+              </div>
+
+
+
+            </div>
+
+
+
+          </div>
+
+
+        </div>

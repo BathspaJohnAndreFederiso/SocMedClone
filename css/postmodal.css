@@ -17,7 +17,6 @@
 }
 
 
-
 input[type="file"]::file-selector-button:hover {
     background-color: #CB7A00;
     transition: background-color 0.2s;
@@ -29,36 +28,9 @@ input[type="file"]::file-selector-button:active {
 }
 
 
-.error-msg{
+
+.error-msg {
     font-size: 11px;
-}
-
-.editBio {
-    background-color: #CB7A00;
-    font-family: SpectralSC-Reg;
-    font-size: 12px;
-    width: 20%;
-    border: none;
-    border-radius: 3px;
-    margin-top: 10px;
-    margin-left: 450px;
-}
-.editBtn {
-    font-family: SpectralSC-Reg;
-    font-size: 14px;
-    font-weight: bold;
-    background-color: #CB7A00;
-    padding: 3px;
-    border: none;
-    border-radius: 3px;
-    color: white;
-}
-
-.editBtn:hover {
-    background-color: #642528;
-    box-shadow: 3px 3px 1px #212020;
-    color: black;
-    transition: background-color 0.2s;
 }
 
 .close {
@@ -70,7 +42,7 @@ input[type="file"]::file-selector-button:active {
 
 }
 
-.modal {
+.post-modal {
     display: none;
     /* hide by default */
     position: fixed;
@@ -91,7 +63,7 @@ input[type="file"]::file-selector-button:active {
 }
 
 /* this section class manages the div where the content is in */
-.edit-section {
+.post-section {
     /* manages the position of the section div */
     background-color: #2D2C2B;
     /* changes background color */
@@ -134,13 +106,24 @@ input[type="file"]::file-selector-button:active {
 }
 
 /* This is where the login section is*/
-.editform-section {
+.postform-section {
 
     width: 30%;
     padding: 0 55px;
     border-radius: 15px;
     flex-grow: 2;
 
+}
+
+.post-img {
+
+    display: flex;
+    flex-direction: column;
+}
+
+
+.img-upload {
+    width: 200px;
 }
 
 .title {
@@ -152,24 +135,24 @@ input[type="file"]::file-selector-button:active {
 }
 
 /*Forget Password Section*/
-.editform-section h1,
-.editform-section h3,
-.editform-section p {
+.postform-section h1,
+.postform-section h3,
+.postform-section p {
     text-align: center;
     color: white;
 }
 
-.editform-section h3 {
+.postform-section h3 {
 
     font-family: SpectralSC-Reg;
 }
 
-.editform-section p {
+.postform-section p {
 
     font-family: SpectralSC-Reg;
 }
 
-.editform-section h1 {
+.postform-section h1 {
     font-size: 45px;
     font-family: SpectralSC-Reg;
 
@@ -186,7 +169,7 @@ input[type="file"]::file-selector-button:active {
 .input-form {
     border-bottom: 3px solid #CB7A00;
     background-color: #535353;
-    padding: 7px;
+    padding: 4px;
 }
 
 .input-form:hover {
@@ -205,8 +188,13 @@ input[type="file"]::file-selector-button:active {
     color: white;
     font-size: 15px;
     outline: none;
+    width: 100%;
     /* removes the outline from the actual input box */
-    width: 60%;
+
+}
+
+.input-form #contents {
+    width: 80%;
 }
 
 .btn-group {
@@ -237,76 +225,7 @@ input[type="file"]::file-selector-button:active {
 
 }
 
-/* css for the modal of the user bio */
-.modal-bio {
-    display: none;
-    flex-direction: column;
-    color: white;
-    align-items: top;
-
-    display: none;
-    /* hide by default */
-    position: fixed;
-    align-items: center;
-    justify-content: center;
-    /* stay on the spot */
-    z-index: 1;
-    /* Location of the box */
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    /* Full width and height */
-    overflow: auto;
-    background-color: rgb(0, 0, 0);
-    background-color: rgba(0, 0, 0, 0.4);
-
-    -webkit-animation-name: fade-in;
-    -webkit-animation-duration: 0.4s;
-    animation-name: fade-in;
-    animation-duration: 0.4s
-}
-.bio-area{
-     /* manages the position of the section div */
-     background-color: #2D2C2B;
-     /* changes background color */
-     display: flex;
-     align-items: center;
-     justify-content: center;
-     /* centers the objects within */
-     padding: 0 0 25px 0;
-     width: 100%;
-     /* manages the height and width */
-     border-radius: 5px;
-     overflow: hidden;
-     /* rounds the corners and hides overflowing hidden */
-     box-shadow: 0 8px 8px 3px rgb(41, 40, 40, 0.4);
- 
-     -webkit-animation-name: fade-in;
-     -webkit-animation-duration: 0.4s;
-     animation-name: fade-in;
-     animation-duration: 0.4s
-}
-.bio-title{
-    font-family: Mont;
-    display: flex;
-
-    align-items: center;
-    line-height: 0.2;
-    justify-content: center;
-}
-.close2{
-    cursor: pointer;
-    position: absolute;
-    z-index: 2;
-    left: 1060px;
-    color: white;
-}
-.modal-bio form {
-    width: 40%;
-}
-
-.modal-bio textarea {
+.post-modal textarea {
     outline: none;
     border-top: 2px solid #CB7A00;
     border-left: 2px solid #CB7A00;
@@ -315,24 +234,4 @@ input[type="file"]::file-selector-button:active {
     border-radius: 5px;
     font-family: Mont;
     background-color: transparent;
-}
-
-.bio-btn {
-    font-family: SpectralSC-Reg;
-    font-size: 12px;
-    font-weight: bold;
-    background-color: #CB7A00;
-    width: 25%;
-    height: 50%;
-    padding: 3px;
-    border: none;
-    border-radius: 7px;
-    color: white;
-}
-.bio-btn:hover, .editBio:hover{
-    
-    background-color: #642528;
-    box-shadow: 3px 3px 1px #212020;
-    transition: background-color 0.2s;
-
 }

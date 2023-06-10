@@ -104,24 +104,6 @@
     font-size: 12px;
   }
 
-  .username {
-    line-height: 0.2;
-    width: 100%;
-    color: white;
-  }
-
-  .username h1 {
-
-    font-family: SpectralSC-Reg;
-    font-size: 18px;
-  }
-
-  .username p {
-
-    font-family: Mont;
-    font-size: 12px;
-  }
-
   .post {
     border-bottom: 3px solid #CB7A00;
   }
@@ -134,9 +116,75 @@
     height: 100%;
     min-width: 50%;
   }
+  /*
+  *{
+    border: 1px solid red;
+  }
+  */
+  .post-replies{
+    font-family: Mont;
+    color: white;
+  }
+  .post-replies h3{
+    font-size: 15px;
+  }
+  .reply{
+    
+    background-color: #323232;
+  }
+  .replyauthor-info {
+
+    font-family: SpectralSC-Reg;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-bottom: 1px solid white; 
+  }
+  
+  .replyauthorname {
+    line-height: 0.2;
+    width: 100%;
+    color: white;
+  }
+
+  .replyauthorname h1 {
+
+    font-family: SpectralSC-Reg;
+    font-size: 12px;
+  }
+
+  .replyauthorname p {
+
+    font-family: Mont;
+    font-size: 10px;
+  }
+  .reply-text{
+    display:flex;
+    font-family: Mont;
+    color: white;
+    font-size: 11px;
+  }
+  .authorname {
+    line-height: 0.2;
+    width: 100%;
+    color: white;
+  }
+
+  .authorname h1 {
+
+    font-family: SpectralSC-Reg;
+    font-size: 18px;
+  }
+
+  .authorname p {
+
+    font-family: Mont;
+    font-size: 12px;
+  }
 
 
-  .user-info {
+
+  .postauthor-info {
 
     font-family: SpectralSC-Reg;
     display: flex;
@@ -145,7 +193,7 @@
     height: 50px;
   }
 
-  .user-info img {
+  .postauthor-info img {
 
     object-fit: contain;
 
@@ -243,7 +291,6 @@
   .options div {
 
     border-bottom: 3px solid #CB7A00;
-    filter: drop-shadow(3px 3px 5px gray);
   }
 
   .options a {
@@ -258,9 +305,12 @@
     transition: 0.2s ease-in-out;
     color: #cb1800;
   }
-
+  .post-options{
+    display: flex; 
+    flex-direction: row;
+  }
   
-  .post-options {
+  .below-post {
     margin-top: 5px;
     display: flex;
     align-items: center;
@@ -269,19 +319,31 @@
     height: 100%;
   }
 
-  .post-options a {
+  .below-post a {
     text-decoration: none;
     color: white;
     font-weight: bold;
     font-family: Mont;
     
   }
-
+  .subreply button{
+    font-size: 10px;
+  }
   .reply-option{
     padding: 5px;
     border-radius: 6px;
     border-right: 2px solid white;
     border-left: 2px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .reply-option button{
+    background: transparent;
+    border: none;
+    color: white;
+    font-weight: bold;
+    font-family: Mont;
   }
   .tag {
     padding: 5px 15px;
@@ -295,9 +357,9 @@
   .create-post {
 
     font-family: SpectralSC-Bold;
-    width: 75%;
+    border: none;
     height: 80px;
-    padding: 5px;
+    padding: 15px;
     border-radius: 5px;
     display: flex;
     align-items: center;
@@ -306,6 +368,12 @@
 
     color: black;
     text-decoration: none;
+  }
+
+  .create-post:hover{
+    
+    transition: 0.2s ease-in-out;
+    background-color: #cb1800;
   }
 
 

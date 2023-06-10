@@ -66,14 +66,14 @@ $stmt->close();
 
           <div class="input-form">
             <input style="border: none;" class="input-field" type="text" name="username" id="username"
-              placeholder="<?= $username ?>" required />
+              placeholder="<?= htmlspecialchars($username) ?>" required />
           </div>
 
           <br>
 
           <div class="input-form">
             <input style="border: none;" class="input-field" type="email" name="email" id="email"
-              placeholder="<?= $email ?>" required />
+              placeholder="<?= htmlspecialchars($email) ?>" required />
           </div>
 
           <br>
@@ -174,19 +174,20 @@ $stmt->close();
             <div class="username">
 
               <h1>
-                <?= $username ?>
+                <?= htmlspecialchars($username) ?>
               </h1>
 
               <h3>
-                <?= $email ?>
+                <?= htmlspecialchars($email) ?>
               </h3>
 
               <p> Joined:
                 <?= $join_date ?>
               </p>
 
-
+              <hr>
             </div>
+
 
             <div class="about">
 
@@ -194,7 +195,7 @@ $stmt->close();
               <h4> About Me</h4>
               <div class="bio">
                 <p>
-                  <?= $bio ?>
+                  <?= htmlspecialchars($bio) ?>
                 <p>
               </div>
 
@@ -227,21 +228,21 @@ $stmt->close();
 
             <div>
               <a href="index.php">
-                <h3><span style='color: white;'>TIMELINE</span></h3>
+                <h3>TIMELINE</h3>
               </a>
             </div>
 
 
             <div>
-              <a href="#">
-                <h3><span style='color: red;'>PROFILE</span></h3>
+              <a>
+                <h3><span style='color: #CB7A00;'>PROFILE</span></h3>
               </a>
             </div>
 
 
             <div>
               <a href="PHPOnly/logout.php">
-                <h3><span style='color: white;'>LOG OUT</span></h3>
+                <h3>LOG OUT</h3>
               </a>
             </div>
 

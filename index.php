@@ -29,6 +29,7 @@ $stmt->close(); // bind to a variable, fetch then close
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mordhub: Home</title>
   <link rel="stylesheet" href="css/index.css">
+  <link rel="stylesheet" href="css/postmodal.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
@@ -38,6 +39,127 @@ $stmt->close(); // bind to a variable, fetch then close
 
 
   </div>
+
+
+
+  <div id="postModal" class="post-modal">
+
+    <div class="post-section">
+
+      <div class="postform-section">
+        <hr>
+        <div class="title">
+
+          <h1>create post</h1>
+          <i class="fa fa-times-circle-o close" aria-hidden="true"></i>
+
+        </div>
+        <hr>
+
+        <form action="PHPOnly/createpost.php" enctype="multipart/form-data" method="post" autocomplete="off">
+
+
+          <div class="post-img input-form">
+            <input type="file" class="img-upload" id="img-upload" name="img-upload" />
+          </div>
+
+          <br>
+
+
+          <div class="input-form">
+            <input style="border: none;" class="input-field" type="text" name="tag" id="tag" placeholder="tag here..."
+              required />
+          </div>
+          <br>
+
+          <textarea id="contents" name="contents" rows="4" cols="50" maxlength="400"
+            placeholder="Post here..."></textarea>
+
+          <br>
+
+
+
+          <p id="error-msg">
+            <!-- element for displaying error messages, hidden if there are no messages -->
+            <?php
+            if (isset($_SESSION["Error"])) { // if session tag for error is set
+              echo $_SESSION['Error']; // echo the value of error
+              unset($_SESSION['Error']); // immediately unset the tag so it doesn't show up after refreshing the page
+            }
+            ?>
+          </p>
+
+          <div class="btn-group">
+
+            <input class="btn" type="submit" name="create" id="create" value="POST">
+
+          </div>
+
+        </form>
+        <!---->
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+
+  <div id="replyModal" class="post-modal">
+
+    <div class="post-section">
+
+      <div class="postform-section">
+        <hr>
+        <div class="title">
+
+          <h1>reply</h1>
+          <i class="fa fa-times-circle-o close" aria-hidden="true"></i>
+
+        </div>
+        <hr>
+
+        <form action="PHPOnly/createpost.php" enctype="multipart/form-data" method="post" autocomplete="off">
+
+
+          <br>
+
+          <textarea id="contents" name="contents" rows="4" cols="50" maxlength="400"
+            placeholder="Post here..."></textarea>
+
+          <br>
+
+
+
+          <p id="error-msg">
+            <!-- element for displaying error messages, hidden if there are no messages -->
+            <?php
+            if (isset($_SESSION["Error"])) { // if session tag for error is set
+              echo $_SESSION['Error']; // echo the value of error
+              unset($_SESSION['Error']); // immediately unset the tag so it doesn't show up after refreshing the page
+            }
+            ?>
+          </p>
+
+          <div class="btn-group">
+
+            <input class="btn" type="submit" name="create" id="create" value="POST">
+
+          </div>
+
+        </form>
+        <!---->
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
 
   <div class="below">
 
@@ -54,9 +176,9 @@ $stmt->close(); // bind to a variable, fetch then close
            <img src="Assets/pfps/' . $pfp . '" height="100%" width="120px"/>  
            <div class="names">  
         
-           <h1> ' . $_SESSION['name'] . ' </h1>
+           <h1> ' . htmlspecialchars($_SESSION['name']) . ' </h1>
            <hr>
-           <h3> ' . $_SESSION['email'] . ' </h3>
+           <h3> ' . htmlspecialchars($_SESSION['email']) . ' </h3>
        
            </div>
            </div>';
@@ -85,21 +207,21 @@ $stmt->close(); // bind to a variable, fetch then close
 
         <div class="post">
 
-          <div class="user-info">
+          <div class="postauthor-info">
             <img src="Assets/Icons/hilt_icon.png" class="pfp" height="100%" width="60px" />
 
-            <div class="username">
-             
-                <h1> POST OWNER </h1>
+            <div class="authorname">
 
-                <p> postowner@email.com, 5 minutes ago</p>
-            
+              <h1> POST OWNER </h1>
+
+              <p> <span style="color: gray;">postowner@email.com, 5 minutes ago<span></p>
+
 
             </div>
 
 
           </div>
-
+          <hr>
 
           <div class="post-content">
 
@@ -115,14 +237,54 @@ $stmt->close(); // bind to a variable, fetch then close
               </p>
             </div>
 
-            <div class="post-options">
 
-              <a class="reply-option" href="createpost.php"> REPLY </a>
+            <div class="below-post">
+
+              <div class="post-options">
+                <a class="reply-option" style="margin-right: 15px;"> <button id="like-post">LIKE</button> </a>
+
+                <a class="reply-option" style="margin-right: 15px;"> <button id="create-edit">EDIT</button> </a>
+   
+                <a class="reply-option"> <button id="create-reply">REPLY</button> </a>
+              </div>
 
               <a class="tag" style="background-color: #CB7A00; color: black;"> QUERY </a>
+            </div>
+
+            <div class="post-replies">    
+
+              <h3>REPLIES</h3>
+
+              <div class="reply">
+                <div class="replyauthor-info">
+                  <img src="Assets/Icons/hilt_icon.png" class="pfp" height="50%" width="30px" />
+                  <div class="replyauthorname">
+
+                    <h1> POST OWNER 2</h1>
+
+                    <p> <span style="color: gray;">postowner2@email.com, 2 minutes ago<span></p>
+
+                  </div>
+
+                  <a class="reply-option subreply" style="margin-right: 15px;"> <button id="like-post">LIKE</button> </a>
+
+                  <a class="reply-option subreply" style="margin-right: 15px;"> <button id="create-edit">EDIT</button> </a>
+
+                </div>
+
+                <div class="reply-text">
+                  <p>
+                    Avoid Nukan's Duels EU, bad admin
+                  </p>
+                </div>
+
+                
+              </div>
+
 
 
             </div>
+
 
 
           </div>
@@ -131,7 +293,7 @@ $stmt->close(); // bind to a variable, fetch then close
         </div>
 
 
-        
+
 
 
 
@@ -143,16 +305,6 @@ $stmt->close(); // bind to a variable, fetch then close
       <div class="right">
 
 
-        <?php
-        if (isset($_SESSION['logged_in'])) {
-          echo '
-                
-          <a class="create-post" href="createpost.php"><h2>CREATE POST</h2></a>
-    
-         ';
-        } ?>
-
-
         <div class="comsbanner">
 
           <div class="options">
@@ -162,6 +314,11 @@ $stmt->close(); // bind to a variable, fetch then close
             <?php
             if (isset($_SESSION['logged_in'])) {
               echo "
+
+              <div>
+                
+                <button class='create-post' id='create-post'href='createpost.php'><h2>CREATE POST</h2></a>
+              </div>
               <div>
               <a class='selected'>
                 <h3><span style='color: #CB7A00;'>TIMELINE</span></h3>
@@ -217,12 +374,40 @@ $stmt->close(); // bind to a variable, fetch then close
 
     </div>
 
-
-
-
-
-
   </div>
+
+
+
+
+  <script>
+    // Get the modal
+    var modal = document.getElementById("postModal");
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("create-post");
+
+    var modal2 = document.getElementById("replyModal");
+    var btn2 = document.getElementById("create-reply");
+
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks the button, open the modal 
+    btn.onclick = function () {
+      modal.style.display = "flex";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function () {
+      modal.style.display = "none";
+    }
+
+    // if the user clicks outside of the modal, close the modal
+    window.onclick = function (event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+  </script>
 
 
 

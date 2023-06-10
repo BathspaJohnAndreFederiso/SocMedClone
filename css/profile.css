@@ -209,5 +209,10 @@
   .options a{ /* no text-decoration on the links */
     text-decoration:none;
     font-family: SpectralSC-Reg;
+    color:white;
   }
-  
+  .options a:hover{
+    
+    transition: 0.2s ease-in-out;
+    color: #cb1800;
+  }
