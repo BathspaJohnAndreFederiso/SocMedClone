@@ -428,12 +428,6 @@ if($_POST['password1'] === $_POST['password2']){ // check if passwords match
                <p> <span style='color: gray;'>postowner2@email.com, 2 minutes ago<span></p>
 
              </div>
-
-             <a class='reply-option subreply' style='margin-right: 15px;'> <button id='like-post'>LIKE</button>
-             </a>
-
-             <a class='reply-option subreply' style='margin-right: 15px;'> <button id='create-edit'>EDIT</button>
-             </a>
            </div>
 
             <div class='reply-text'>

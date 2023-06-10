@@ -18,12 +18,6 @@
 
   }
 
-  /*
-  *{
-    border: 1px solid red;
-  }
-  */
-
   ::-webkit-scrollbar {
     width: 3px;
   }
@@ -106,7 +100,7 @@
 
   .post {
     border-bottom: 3px solid #CB7A00;
-
+    
   }
 
   .post-text {
@@ -118,11 +112,6 @@
     min-width: 50%;
   }
 
-  /*
-  *{
-    border: 1px solid red;
-  }
-  */
   .post-replies {
     font-family: Mont;
     color: white;
@@ -138,7 +127,7 @@
   }
 
   .reply {
-
+    margin-bottom: 5px;
     background-color: #323232;
   }
 
@@ -210,7 +199,6 @@
     object-fit: contain;
 
   }
-
   .user {
     background-color: transparent;
     font-family: SpectralSC-Reg;
@@ -377,9 +365,6 @@
 
   }
 
-  .subreply button {
-    font-size: 10px;
-  }
 
   .reply-option {
     padding: 5px;
@@ -390,9 +375,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    
     background: transparent;
-
+    font-size: 10px;
     color: white;
     font-weight: bold;
     font-family: Mont;

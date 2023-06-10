@@ -2,56 +2,43 @@
 
 include 'PHPOnly/connect.php'; // this file will be used
 
-function show_replies($replies, $parent_id)
-{
-  $postreplies = '';
-  if ($parent_id) {
-    // If the comments are replies sort them by the "submit_date" column
-    array_multisort(array_column($replies, 'date'), SORT_ASC, $replies);
+function createReplyRow($dataR){
+   $response = "
+   
+   <div class='reply'>
+   <div class='replyauthor-info'>
+     <img src='Assets/pfps/". $dataR['pfp'] ."'.  class='pfp' height='50%' width='30px' />
+     <div class='replyauthorname'>
 
-    // Iterate the replies using the foreach loop
-    foreach ($replies as $reply) {
-      if ($reply['parent_id'] == $parent_id) {
-        // Add the comment to the $post-replies variable
-        $postreplies .= '
+       <h1>". $dataR['username'] . "</h1>
 
-        <div class="post-replies">
+       <p> <span style='color: gray;'>" . $dataR['email'] . ", " . $dataR['date'] . "<span></p>
 
-        <h3>REPLIES</h3>
+     </div>
 
-        <div class="reply">
-          <div class="replyauthor-info">
-            <img src="Assets/Icons/'. $reply['pfp'] .'" class="pfp" height="50%" width="30px" />
-            <div class="replyauthorname">
+   </div>
+   <div class='reply-text'>
+     <p>
+     " . $dataR['reply_content'] . "
+     </p>
+   </div>
 
-              <h1>'. $reply['username'] .'</h1>
 
-              <p> <span style="color: gray;">'. $reply['email'] .', '. $reply['date'] .'<span></p>
+ </div>
+   ";
 
-            </div>
-
-          </div>
-
-           <div class="reply-text">
-             <p>
-             '. $reply['reply_content'] .'
-             </p>
-           </div>
-          </div>  
-      </div>
-
-        '; // reply html format goes above in $postreplies
-      }
-    }
-  }
-  return $postreplies;
+   return $response;
 }
-
 
 function createCommentRow($data)
 {
 
+  //function createReplyRow($)
 
+  //$sql = $conn->query("SELECT replies.id, name, comment, DATE_FORMAT(replies.createdOn, '%Y-%m-%d') AS createdOn FROM replies INNER JOIN users ON replies.userID = users.id WHERE replies.commentID = '".$data['id']."' ORDER BY replies.id DESC LIMIT 1");
+    //while($dataR = $sql->fetch_assoc()){
+        //$response .= createReplyRow($dataR);
+      //}
 
   if (empty($data['img'])) {
 
@@ -60,7 +47,7 @@ function createCommentRow($data)
   <div class="post">
 
   <div class="postauthor-info">
-    <img src="Assets/pfps/' . $data['pfp'] . '" class="pfp" height="100%" width="60px" />
+    <img src="Assets/pfps/'. $data['pfp'] .'" class="pfp" height="100%" width="60px" />
 
     <div class="authorname">
 
@@ -84,7 +71,8 @@ function createCommentRow($data)
       ' . $data['content'] . ' 
       </p>
     </div>
-
+     
+    
 
     <div class="below-post"> 
     
@@ -103,6 +91,7 @@ function createCommentRow($data)
 
       if ($_SESSION['id'] == $data['owner_id']) {
         $response .= '
+        
     
         <button id="create-edit" class="reply-option" style="margin-right: 15px;">EDIT</button>
  
@@ -119,16 +108,18 @@ function createCommentRow($data)
     </div>
 
       <a class="tag" style="background-color: lightgray; color: black;"> ' . $data['tag'] . ' </a>
+
+      
     </div>';
 
 
     if (isset($_SESSION['logged_in'])) {
       $response .= '
       <form class="reply-section" action="PHPOnly/InsertReply.php" method="post">
-    <textarea id="contents" name="reply_content" rows="4" cols="50" maxlength="150"
-     placeholder="Reply Here..."></textarea>
+    <textarea id="contents" name="reply_content" rows="4" cols="50" maxlength="450"
+     placeholder="Reply Here..." required></textarea>
      <input type="hidden" name="parent_id" id="parent_id" value="'.$data['id'].'">
-
+     
      
      <input class="reply-btn" type="submit" name="post-reply" id="post-reply" value="R E P L Y">
      
@@ -143,12 +134,23 @@ function createCommentRow($data)
     
     
   </div>
-
-
-    
-
   
+  <div class="post-replies">
+  ';
 
+  global $conn;
+  // $sql2 = $conn->query(query: "SELECT username, mordhaureplies.parent_id, mordhaureplies.id, mordhaureplies.email, mordhaureplies.pfp, reply_content, mordhaureplies.date FROM mordhaureplies INNER JOIN mordhaucomments ON mordhaureplies.parent_id = mordhaucomments.id WHERE mordhaureplies.owner_id = '".$data['id']."' ORDER BY replies.id DESC LIMIT 1");
+  $sql2 = $conn->query(query: "SELECT username, mordhaureplies.parent_id, mordhaureplies.id, mordhaureplies.email, mordhaureplies.pfp, reply_content, mordhaureplies.date FROM mordhaureplies WHERE mordhaureplies.parent_id = '".$data['id']."' ORDER BY mordhaureplies.id ");
+  
+  while($dataR = $sql2->fetch_assoc()){
+      $response .= createReplyRow($dataR);
+  }
+
+
+  $response .='
+
+
+  </div>
 
   </div>
   
@@ -159,104 +161,123 @@ function createCommentRow($data)
 
     $response = '
     
-  <div class="post">
-
-  <div class="postauthor-info">
-    <img src="Assets/pfps/' . $data['pfp'] . '" class="pfp" height="100%" width="60px" />
-
-    <div class="authorname">
-
-      <h1> ' . $data['name'] . ' </h1>
-
-      <p> <span style="color: gray;"> ' . $data['email'] . ',  ' . $data['date'] . ' <span></p>
-
+    <div class="post">
+  
+    <div class="postauthor-info">
+      <img src="Assets/pfps/'. $data['pfp'] .'" class="pfp" height="100%" width="60px" />
+  
+      <div class="authorname">
+  
+        <h1> ' . $data['name'] . ' </h1>
+  
+        <p> <span style="color: gray;"> ' . $data['email'] . ',  ' . $data['date'] . ' <span></p>
+  
+      </div>
+  
+  
     </div>
-
-
-  </div>
-  <hr>
-
-  <div class="post-content">
+    <hr>
+  
+    <div class="post-content">
 
     
-    <div class="post-media">
-    <img src="Assets/PostMedia/' . $data['img'] . '" class="pfp" height="50%" width="50%" />
-    </div>
 
-
-    <div class="post-text">
-      <p>
-      ' . $data['content'] . ' 
-      </p>
-    </div>
-
-
-    <div class="below-post"> 
-    <div class="post-options">
-    ';
-
-
-
-    if (isset($_SESSION['logged_in'])) {
-      $response .= '
-    
-       <button id="like-post" class="reply-option" style="margin-right: 15px;">LIKE</button> 
-
-
+       <div class="post-media">
+       <img src="Assets/PostMedia/' . $data['img'] . '" class="pfp" height="50%" width="50%" />
+       </div>
+  
+  
+  
+  
+      <div class="post-text">
+        <p>
+        ' . $data['content'] . ' 
+        </p>
+      </div>
+       
+      
+  
+      <div class="below-post"> 
+      
+      <div class="post-options">    ';
+  
+  
+  
+      if (isset($_SESSION['logged_in'])) {
+        $response .= '
+      
+         <button id="like-post" class="reply-option" style="margin-right: 15px;">LIKE</button> 
+  
+  
+     
+        ';
+  
+        if ($_SESSION['id'] == $data['owner_id']) {
+          $response .= '
+          
+      
+          <button id="create-edit" class="reply-option" style="margin-right: 15px;">EDIT</button>
    
-      ';
-
-      if ($_SESSION['id'] == $data['owner_id']) { // check if session id is equal to the id of the author of this post
-        // let the current logged in id owner be able to edit the post
-        $response .= ' 
-    
-        <button id="create-edit" class="reply-option" style="margin-right: 15px;">EDIT</button>
- 
-    
-       ';
-
+      
+         ';
+  
+        }
+  
+  
       }
-    }
-
-    $response .= '
-     </div>
-      <a class="tag" style="background-color: lightgray; color: black;"> ' . $data['tag'] . ' </a>
-    </div>';
-
-
-    if (isset($_SESSION['logged_in'])) {
+  
       $response .= '
-      <form class="reply-section" action="">
-    <textarea id="contents" name="contents" rows="4" cols="50" maxlength="400"
-     placeholder="Reply Here..."></textarea>
-
-     
-     <input class="reply-btn" type="submit" name="post-reply" id="post-reply" value="R E P L Y">
-     
-    </form>
   
-      ';
-
+      </div>
+  
+        <a class="tag" style="background-color: lightgray; color: black;"> ' . $data['tag'] . ' </a>
+  
+        
+      </div>';
+  
+  
+      if (isset($_SESSION['logged_in'])) {
+        $response .= '
+        <form class="reply-section" action="PHPOnly/InsertReply.php" method="post">
+      <textarea id="contents" name="reply_content" rows="4" cols="50" maxlength="450"
+       placeholder="Reply Here..." required></textarea>
+       <input type="hidden" name="parent_id" id="parent_id" value="'.$data['id'].'">
+       
+       
+       <input class="reply-btn" type="submit" name="post-reply" id="post-reply" value="R E P L Y">
+       
+      </form>
+    
+        ';
+  
+      }
+  
+      $response .= '
+  
+      
+      
+    </div>
+    
+    <div class="post-replies">
+    ';
+  
+    global $conn;
+    // $sql2 = $conn->query(query: "SELECT username, mordhaureplies.parent_id, mordhaureplies.id, mordhaureplies.email, mordhaureplies.pfp, reply_content, mordhaureplies.date FROM mordhaureplies INNER JOIN mordhaucomments ON mordhaureplies.parent_id = mordhaucomments.id WHERE mordhaureplies.owner_id = '".$data['id']."' ORDER BY replies.id DESC LIMIT 1");
+    $sql2 = $conn->query(query: "SELECT username, mordhaureplies.parent_id, mordhaureplies.id, mordhaureplies.email, mordhaureplies.pfp, reply_content, mordhaureplies.date FROM mordhaureplies WHERE mordhaureplies.parent_id = '".$data['id']."' ORDER BY mordhaureplies.id ");
+    
+    while($dataR = $sql2->fetch_assoc()){
+        $response .= createReplyRow($dataR);
     }
-
-    $response .= '
-
-    
-    
-  </div>
-
-
-    
-
-
-
-
-  </div>
-
-
-  </div>
   
-  ';
+  
+    $response .='
+  
+  
+    </div>
+  
+    </div>
+    
+    ';
 
 
 
@@ -269,6 +290,8 @@ if (isset($_POST['getAllComments'])) {
   $start = $conn->real_escape_string($_POST['start']);
   $response = "";
   $sql = $conn->query(query: "SELECT name, mordhaucomments.owner_id, mordhaucomments.id, mordhaucomments.email, mordhaucomments.pfp, content, mordhaucomments.tag, mordhaucomments.img, date FROM mordhaucomments INNER JOIN accounts ON mordhaucomments.owner_id = accounts.id ORDER BY mordhaucomments.id DESC LIMIT $start, 20");
+  
+  //$sql2 = $conn->query(query: "SELECT username, mordhaureplies.parent_id, mordhaureplies.id, mordhaureplies.email, mordhaureplies.pfp, reply_content, mordhaureplies.date FROM mordhaureplies INNER JOIN mordhaucomments ON mordhaureplies.parent_id = mordhaucomments.id ORDER BY mordhaureplies.id DESC LIMIT $start, 20");
   
   while ($data = $sql->fetch_assoc()) {
     $response .= createCommentRow($data);
@@ -294,7 +317,13 @@ $stmt2 = $conn->prepare("SELECT id FROM mordhaucomments");
 $stmt2->execute();
 $numComments = $stmt2->num_rows;
 
-$stmt2->close(); // bind to a variable, fetch then close
+$stmt2->close(); // close
+
+//$stmt3 = $conn->prepare("SELECT id FROM mordhaureplies");
+//$stmt3->execute();
+//$numReplies = $stmt3->num_rows;
+
+//$stmt3->close(); // close
 
 ?>
 
@@ -334,7 +363,7 @@ $stmt2->close(); // bind to a variable, fetch then close
         <div class="title">
 
           <h1>create post</h1>
-          <i class="fa fa-times-circle-o close" aria-hidden="true"></i>
+          <i class="fa fa-times-circle-o close" id="close"aria-hidden="true"></i>
 
         </div>
         <hr>
@@ -379,7 +408,7 @@ $stmt2->close(); // bind to a variable, fetch then close
 
 
 
-  <div id="replyModal" class="post-modal">
+  <div id="editModal" class="post-modal">
 
     <div class="post-section">
 
@@ -387,8 +416,8 @@ $stmt2->close(); // bind to a variable, fetch then close
         <hr>
         <div class="title">
 
-          <h1>reply</h1>
-          <i class="fa fa-times-circle-o close" aria-hidden="true"></i>
+          <h1>edit post</h1>
+          <i class="fa fa-times-circle-o close" id=" lose2" aria-hidden="true"></i>
 
         </div>
         <hr>
@@ -566,14 +595,20 @@ $stmt2->close(); // bind to a variable, fetch then close
   <script>
     // Get the modal
     var modal = document.getElementById("postModal");
+    //var modal2 = document.getElementById("editModal");
     // Get the button that opens the modal
     var btn = document.getElementById("create-post");
-    var span = document.getElementsByClassName("close")[0];
+    //var btn2 = document.getElementById("create-edit");
+
+    var span = document.getElementById("close");
+    //var span2 = document.getElementById("close2");
 
     // When the user clicks the button, open the modal 
     btn.onclick = function () {
       modal.style.display = "flex";
     };
+
+    
 
     // When the user clicks on <span> (x), close the modal
     span.onclick = function () {
@@ -621,6 +656,7 @@ $stmt2->close(); // bind to a variable, fetch then close
     $(document).ready(function () {
 
       getAllComments(0, <?php echo $numComments ?>);
+      
     });
 
     function getAllComments(start, max) {
@@ -641,8 +677,9 @@ $stmt2->close(); // bind to a variable, fetch then close
         }
       })
     };
-  </script>
 
+    
+  </script>
 
 
 </body>
