@@ -1,11 +1,7 @@
 <?php
-//if (!isset($_SESSION['logged_in'])) {
-//header('Location: login.php'); // redirect to logged_in page
-//exit;
-//}
-
 
 include 'PHPOnly/connect.php'; // this file will be used
+include 'PHPOnly/insertPost.php'; // this file will also be used
 
 
 $stmt = $conn->prepare('SELECT pfp FROM accounts WHERE id = ?');
@@ -56,7 +52,7 @@ $stmt->close(); // bind to a variable, fetch then close
         </div>
         <hr>
 
-        <form action="PHPOnly/createpost.php" enctype="multipart/form-data" method="post" autocomplete="off">
+        <form action="PHPOnly/insertPost.php" enctype="multipart/form-data" method="post" autocomplete="off">
 
 
           <div class="post-img input-form">
@@ -78,20 +74,9 @@ $stmt->close(); // bind to a variable, fetch then close
           <br>
 
 
-
-          <p id="error-msg">
-            <!-- element for displaying error messages, hidden if there are no messages -->
-            <?php
-            if (isset($_SESSION["Error"])) { // if session tag for error is set
-              echo $_SESSION['Error']; // echo the value of error
-              unset($_SESSION['Error']); // immediately unset the tag so it doesn't show up after refreshing the page
-            }
-            ?>
-          </p>
-
           <div class="btn-group">
 
-            <input class="btn" type="submit" name="create" id="create" value="POST">
+            <input class="btn" type="submit" name="createPost" id="createPost" value="POST">
 
           </div>
 
@@ -123,25 +108,10 @@ $stmt->close(); // bind to a variable, fetch then close
 
         <form action="PHPOnly/createpost.php" enctype="multipart/form-data" method="post" autocomplete="off">
 
-
-          <br>
-
           <textarea id="contents" name="contents" rows="4" cols="50" maxlength="400"
             placeholder="Post here..."></textarea>
 
           <br>
-
-
-
-          <p id="error-msg">
-            <!-- element for displaying error messages, hidden if there are no messages -->
-            <?php
-            if (isset($_SESSION["Error"])) { // if session tag for error is set
-              echo $_SESSION['Error']; // echo the value of error
-              unset($_SESSION['Error']); // immediately unset the tag so it doesn't show up after refreshing the page
-            }
-            ?>
-          </p>
 
           <div class="btn-group">
 
@@ -216,7 +186,6 @@ $stmt->close(); // bind to a variable, fetch then close
 
               <p> <span style="color: gray;">postowner@email.com, 5 minutes ago<span></p>
 
-
             </div>
 
 
@@ -244,14 +213,14 @@ $stmt->close(); // bind to a variable, fetch then close
                 <a class="reply-option" style="margin-right: 15px;"> <button id="like-post">LIKE</button> </a>
 
                 <a class="reply-option" style="margin-right: 15px;"> <button id="create-edit">EDIT</button> </a>
-   
+
                 <a class="reply-option"> <button id="create-reply">REPLY</button> </a>
               </div>
 
               <a class="tag" style="background-color: #CB7A00; color: black;"> QUERY </a>
             </div>
 
-            <div class="post-replies">    
+            <div class="post-replies">
 
               <h3>REPLIES</h3>
 
@@ -266,9 +235,11 @@ $stmt->close(); // bind to a variable, fetch then close
 
                   </div>
 
-                  <a class="reply-option subreply" style="margin-right: 15px;"> <button id="like-post">LIKE</button> </a>
+                  <a class="reply-option subreply" style="margin-right: 15px;"> <button id="like-post">LIKE</button>
+                  </a>
 
-                  <a class="reply-option subreply" style="margin-right: 15px;"> <button id="create-edit">EDIT</button> </a>
+                  <a class="reply-option subreply" style="margin-right: 15px;"> <button id="create-edit">EDIT</button>
+                  </a>
 
                 </div>
 
@@ -278,7 +249,7 @@ $stmt->close(); // bind to a variable, fetch then close
                   </p>
                 </div>
 
-                
+
               </div>
 
 
@@ -308,6 +279,25 @@ $stmt->close(); // bind to a variable, fetch then close
         <div class="comsbanner">
 
           <div class="options">
+
+         
+
+              <p id="error-msg">
+                <!-- element for displaying error messages, hidden if there are no messages -->
+                <?php
+                if (isset($_SESSION["Error"])) { // if session tag for error is set
+                  echo "
+                    <div>
+                    ". $_SESSION['Error'] ."
+                    </div>
+                  
+                  "; // echo the value of error
+                  unset($_SESSION['Error']); // immediately unset the tag so it doesn't show up after refreshing the page
+                }
+                ?>
+              </p>
+
+        
 
 
 

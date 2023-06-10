@@ -32,7 +32,7 @@ if (isset($_POST['update'])) { // if statement that runs once POST update is rec
         $pfpFileData = explode('/', $pfpType); // turns pfp Type into an string array using '/' as the separator, this will separate the output of 
         //'type' into values 'image' and the file type extension
 
-        $pfpExtension = $pfpFileData[count($pfpFileData) - 1]; // select the last item in $pfpData (this is the file extension ex. png, jpg, jpeg)
+        $pfpExtension = $pfpFileData[count($pfpFileData) - 1]; // select the last item in $pfpFileData (this is the file extension ex. png, jpg, jpeg)
 
 
         if ($pfpExtension == 'jpg' || $pfpExtension == 'png' || $pfpExtension == 'jpeg') { // if statement that checks if the file extension is equal to png or jpg
