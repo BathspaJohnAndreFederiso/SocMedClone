@@ -47,6 +47,8 @@ if (isset($_POST['update'])) { // if statement that runs once POST update is rec
                     if ($stmt = $conn->prepare('UPDATE accounts SET username = (?), email = (?), pfp = (?) WHERE id = ?')) {
 
                         $stmt->bind_param('sssi', $newUsername, $newEmail, $pfpName, $_SESSION['id']); // bind the four parameters of the prepared statements
+                        $_SESSION['name'] = $newUsername; 
+                        $_SESSION['email'] = $newEmail; // set new session cookies for the name and email 
                         $stmt->execute(); // execute
                         header('Location: ../userprofile.php'); // send the user on their merry way to userprofile.php 
                         exit();
