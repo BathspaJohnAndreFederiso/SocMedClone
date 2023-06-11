@@ -1,6 +1,6 @@
 <?php
-session_start();
-if (isset($_SESSION['logged_in'])) {
+session_start(); 
+if (isset($_SESSION['logged_in'])) { // if session logged_in is set run this code
     header('Location: index.php'); // redirect to index page
     exit;
 }
@@ -38,7 +38,7 @@ if (isset($_SESSION['logged_in'])) {
 
 
                 <form class="inline" action="PHPOnly/authaccount.php" method="post" autocomplete="off">
-
+                      <!-- use authaccount as action -->
                     <div class="input-form">
                         <input style="border: none;" class="input-field" type="text" name="username" id="username"
                             placeholder="Username" required />
@@ -50,7 +50,7 @@ if (isset($_SESSION['logged_in'])) {
                             placeholder="Password" required />
                     </div>
 
-                    
+                     <!-- links to other pages if you're looking to register or reset password -->
                     <p>Don't have an account? <a href="registration.php">Enlist</a></p>
 
                     <p>Forgot your Password? <a href="forgetpass.php">Reset</a></p>

@@ -2,8 +2,9 @@
 
 include 'PHPOnly/connect.php'; // this file will be used
 
-function createReplyRow($dataR){
-   $response = "
+function createReplyRow($dataR){ // this function creates a reply to a post, using $dataR as parameter
+  // concatenate into $response the reply HTML tags, with concatenated $dataR array values 
+   $response = " 
    
    <div class='reply'>
    <div class='replyauthor-info'>
@@ -27,22 +28,16 @@ function createReplyRow($dataR){
  </div>
    ";
 
-   return $response;
+   return $response; // return $response 
 }
 
-function createCommentRow($data)
+function createCommentRow($data) // this function creates a post, using $data as parameter
 {
 
-  //function createReplyRow($)
 
-  //$sql = $conn->query("SELECT replies.id, name, comment, DATE_FORMAT(replies.createdOn, '%Y-%m-%d') AS createdOn FROM replies INNER JOIN users ON replies.userID = users.id WHERE replies.commentID = '".$data['id']."' ORDER BY replies.id DESC LIMIT 1");
-    //while($dataR = $sql->fetch_assoc()){
-        //$response .= createReplyRow($dataR);
-      //}
-
-  if (empty($data['img'])) {
-
-    $response = '
+  if (empty($data['img'])) { // if statement that runs if data['img'] is empty
+    // add to $response the contents of the post, with values from $data concatenated in
+    $response = ' 
     
   <div class="post">
 
@@ -87,7 +82,7 @@ function createCommentRow($data)
       
     </div>';
 
-
+    // some content need to be visible for logged in users only, hence cutting the 
     if (isset($_SESSION['logged_in'])) {
       $response .= '
       <form class="reply-section" action="PHPOnly/InsertReply.php" method="post">
@@ -100,7 +95,7 @@ function createCommentRow($data)
      
     </form>
   
-      ';
+      '; // add to $response the abilty to reply
 
     }
 
@@ -111,17 +106,17 @@ function createCommentRow($data)
   </div>
   
   <div class="post-replies">
-  ';
+  '; 
 
-  global $conn;
+  global $conn; // global $conn variable so it can be used inside this function
   // $sql2 = $conn->query(query: "SELECT username, mordhaureplies.parent_id, mordhaureplies.id, mordhaureplies.email, mordhaureplies.pfp, reply_content, mordhaureplies.date FROM mordhaureplies INNER JOIN mordhaucomments ON mordhaureplies.parent_id = mordhaucomments.id WHERE mordhaureplies.owner_id = '".$data['id']."' ORDER BY replies.id DESC LIMIT 1");
   $sql2 = $conn->query(query: "SELECT username, mordhaureplies.parent_id, mordhaureplies.id, mordhaureplies.email, mordhaureplies.pfp, reply_content, mordhaureplies.date FROM mordhaureplies WHERE mordhaureplies.parent_id = '".$data['id']."' ORDER BY mordhaureplies.id ");
-  
-  while($dataR = $sql2->fetch_assoc()){
-      $response .= createReplyRow($dataR);
+  // sql2 query calls these datafields whose parent_id value is equal to the comment's id (this means that only replies to this specific comment will be acquired) 
+  while($dataR = $sql2->fetch_assoc()){ // while $sql2 fetchthe values in the query as an array do this
+      $response .= createReplyRow($dataR); // concatenate to $response the function createReplyRow with $dataR, which has the fetch_assoc value
   }
 
-
+  // finish concatenating the string
   $response .='
 
 
@@ -131,8 +126,8 @@ function createCommentRow($data)
   
   ';
 
-  } else {
-
+  } else { // else means that $data[img] is not empty
+    // this is the same except $data[img] is also included
 
     $response = '
     
@@ -234,22 +229,21 @@ function createCommentRow($data)
 
   }
 
-  return $response;
+  return $response; // return the finished $response value to whatever code has summoned this function
 }
 
-if (isset($_POST['getAllComments'])) {
-  $start = $conn->real_escape_string($_POST['start']);
-  $response = "";
+if (isset($_POST['getAllComments'])) { // if the POST for getAllComments has been set (this is done by the AJAX upon this document being ready)
+  $start = $conn->real_escape_string($_POST['start']); // start variable is equal to the sql database connection function accessing POST start value (both getAllComments and start are returned by an AJAX script at the bottom of this page)
+  $response = ""; // create an empty response (this will be concatenated with the post data)
   $sql = $conn->query(query: "SELECT name, mordhaucomments.owner_id, mordhaucomments.id, mordhaucomments.email, mordhaucomments.pfp, content, mordhaucomments.tag, mordhaucomments.img, date FROM mordhaucomments INNER JOIN accounts ON mordhaucomments.owner_id = accounts.id ORDER BY mordhaucomments.id DESC LIMIT $start, 20");
-  
-  //$sql2 = $conn->query(query: "SELECT username, mordhaureplies.parent_id, mordhaureplies.id, mordhaureplies.email, mordhaureplies.pfp, reply_content, mordhaureplies.date FROM mordhaureplies INNER JOIN mordhaucomments ON mordhaureplies.parent_id = mordhaucomments.id ORDER BY mordhaureplies.id DESC LIMIT $start, 20");
-  
-  while ($data = $sql->fetch_assoc()) {
-    $response .= createCommentRow($data);
+   // select post data (from mordhaucomments) that has equal value or is associated with a user's id via WHERE and INNER JOIN, ordered by the value of mordhaucomments.id
+   
+  while ($data = $sql->fetch_assoc()) { // while data is fetching arrays from mordhaucomments table via $sql do this
+    $response .= createCommentRow($data); // concatenate into $response the returned value of createCommentRow with $data put as parameter
 
   }
 
-  exit($response);
+  exit($response); // exit with the value of $response
 
 }
 
@@ -261,20 +255,15 @@ $stmt->bind_param('i', $_SESSION['id']);
 $stmt->execute(); // execute the prepared statement using the binded parameter
 $stmt->bind_result($pfp);
 $stmt->fetch();
+    // bind to a variable, fetch then close
+$stmt->close();
 
-$stmt->close(); // bind to a variable, fetch then close
-
-$stmt2 = $conn->prepare("SELECT id FROM mordhaucomments");
-$stmt2->execute();
-$numComments = $stmt2->num_rows;
+$stmt2 = $conn->prepare("SELECT id FROM mordhaucomments"); // select ALL id records from mordhaucomment
+$stmt2->execute(); // execute
+$numComments = $stmt2->num_rows; // set the variable of $numComments to the values taken by $stmt2
 
 $stmt2->close(); // close
 
-//$stmt3 = $conn->prepare("SELECT id FROM mordhaureplies");
-//$stmt3->execute();
-//$numReplies = $stmt3->num_rows;
-
-//$stmt3->close(); // close
 
 ?>
 
@@ -291,9 +280,10 @@ $stmt2->close(); // close
   <link rel="stylesheet" href="css/index.css">
 
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script> 
   <link rel="stylesheet" href="css/postmodal.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- call jquery and fontawesome scripts from their sites, css files from the folder-->
 </head>
 
 <body>
@@ -301,10 +291,10 @@ $stmt2->close(); // close
   <div class="coms">
 
 
-  </div>
+  </div> <!-- this is the banner on top with the image of the Mordhau knight -->
 
 
-
+ <!-- modal for posts, this is hidden by default -->
   <div id="postModal" class="post-modal">
 
     <div class="post-section">
@@ -320,7 +310,7 @@ $stmt2->close(); // close
         <hr>
 
         <form action="PHPOnly/insertPost.php" enctype="multipart/form-data" method="post" autocomplete="off">
-
+         <!-- form uses insertPost.php as action -->
 
           <div class="post-img input-form">
             <input type="file" class="img-upload" id="img-upload" name="img-upload" />
@@ -339,7 +329,7 @@ $stmt2->close(); // close
             placeholder="Post here..."></textarea>
 
           <br>
-
+          <!-- input forms for image submission, tag and post contents-->
 
           <div class="btn-group">
 
@@ -359,53 +349,16 @@ $stmt2->close(); // close
 
 
 
-  <div id="editModal" class="post-modal">
 
-    <div class="post-section">
-
-      <div class="postform-section">
-        <hr>
-        <div class="title">
-
-          <h1>edit post</h1>
-          <i class="fa fa-times-circle-o close" id=" lose2" aria-hidden="true"></i>
-
-        </div>
-        <hr>
-
-        <form action="PHPOnly/insertPostBasic.php" enctype="multipart/form-data" method="post" autocomplete="off">
-
-          <textarea id="contents" name="contents" rows="4" cols="50" maxlength="400"
-            placeholder="Post here..."></textarea>
-
-          <br>
-
-          <div class="btn-group">
-
-            <input class="btn" type="submit" name="create" id="create" value="POST">
-
-          </div>
-
-        </form>
-        <!---->
-
-      </div>
-
-    </div>
-
-  </div>
-
-
-
-
+  <!-- this div class manages whats below coms-->
   <div class="below">
-
+ 
     <div class="text-boxes">
 
-
+      
       <div class="left">
 
-
+       <!-- some page elements are only visible if some session tags are set-->
         <?php
         if (isset($_SESSION['logged_in'])) {
           echo '
@@ -413,15 +366,15 @@ $stmt2->close(); // close
            <img src="Assets/pfps/' . $pfp . '" height="100%" width="120px"/>  
            <div class="names">  
         
-           <h1> ' . htmlspecialchars($_SESSION['name']) . ' </h1>
+           <h1> ' . htmlspecialchars($_SESSION['name']) . ' </h1> 
            <hr>
            <h3> ' . htmlspecialchars($_SESSION['email']) . ' </h3>
        
            </div>
            </div>';
-        }
-
-        ?>
+        } 
+ 
+        ?> <!-- use htmlspecialchars to avoid illegal characters being outputted to the user -->
 
 
 
@@ -478,9 +431,9 @@ $stmt2->close(); // close
 
 
 
-
+            <!-- some layouts change entirely depending on whether or not the logged_in session tag is set-->
             <?php
-            if (isset($_SESSION['logged_in'])) {
+            if (isset($_SESSION['logged_in'])) { // if the logged_in tag is set, output the options for viewing your profile and creating posts
               echo "
 
               <div>
@@ -505,7 +458,7 @@ $stmt2->close(); // close
             </a>
           </div>
          ";
-            } else {
+            } else { // if not, output other options
 
               echo "
 
@@ -600,31 +553,31 @@ $stmt2->close(); // close
   </script>
 
 
-  <script id="this-is-AJAX" type="text/javascript">
+  <script id="this-is-AJAX" type="text/javascript"> 
+    // ajax script, used for populating the center div with posts and replies
 
 
+    $(document).ready(function () {  // once the document is ready execute this function
 
-    $(document).ready(function () {
-
-      getAllComments(0, <?php echo $numComments ?>);
+      getAllComments(0, <?php echo $numComments ?>); // call getAllComments (right below), with 0 and $numcomments variable (the code at the top, line 263) passed as parameter
       
     });
 
-    function getAllComments(start, max) {
-      if (start > max) {
-        return;
+    function getAllComments(start, max) { // getAllComments has start and max has parameters
+      if (start > max) { // start is greater than max? this must run
+        return; // return value
       }
 
-      $.ajax({
+      $.ajax({ // ajax stuff
         url: 'index.php',
         method: 'post',
-        dataType: 'text',
-        data: {
+        dataType: 'text', // set url, method and dataTypes. This populates the page with posts so it has to be text
+        data: {    // save data for getAllComments and start 
           getAllComments: 1,
           start: start
-        }, success: function (response) {
-          $(".center").append(response);
-          getAllComments((start + 20), max);
+        }, success: function (response) { // if success do this function with $response
+          $(".center").append(response); // append to the class .center the value of $response
+          getAllComments((start + 20), max); // call getAllComments again with start + 20 and max and the first and second parameter
         }
       })
     };

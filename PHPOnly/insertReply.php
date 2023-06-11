@@ -15,14 +15,15 @@ if (isset($_POST['post-reply'])) {
   
     $pid = $_POST["parent_id"];
 
-    $content = $_POST["reply_content"];
+    $content = $_POST["reply_content"]; // set these variables' value to the values of POSTs for parent_id and reply_content 
 
 
     // this is an alternate post submission without the img being included                                      1  2  3  4  5   values to send
     $stmt = $conn->prepare('INSERT INTO mordhaureplies (parent_id, username, email, pfp, reply_content) VALUES (?, ?, ?, ?, ?)');
-    $stmt->bind_param('issss', $pid, $username, $email, $pfp,  $content);
-    $stmt->execute();
-    header('Location: ../index.php'); // send the user on their merry way to index.php (this is the home screen)
+    // prepare statement to insert a new reply record into mordhau replies
+    $stmt->bind_param('issss', $pid, $username, $email, $pfp,  $content); // bind
+    $stmt->execute(); // execute
+    header('Location: ../index.php'); // redirect the user on their merry way to index.php (this is the home screen)
 
 
 

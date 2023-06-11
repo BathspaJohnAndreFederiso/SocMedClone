@@ -437,3 +437,88 @@ if($_POST['password1'] === $_POST['password2']){ // check if passwords match
             </div>
            </div>  
        </div>
+
+
+
+------------------------------------------- EDIT POST MODAL -----------------------------------------------
+
+
+
+ 
+  <div id="editModal" class="post-modal"> <!-- this div is currently not in use -->
+
+    <div class="post-section">
+
+      <div class="postform-section">
+        <hr>
+        <div class="title">
+
+          <h1>edit post</h1>
+          <i class="fa fa-times-circle-o close" id=" lose2" aria-hidden="true"></i>
+
+        </div>
+        <hr>
+
+        <form action="PHPOnly/insertPostBasic.php" enctype="multipart/form-data" method="post" autocomplete="off">
+
+          <textarea id="contents" name="contents" rows="4" cols="50" maxlength="400"
+            placeholder="Post here..."></textarea>
+
+          <br>
+
+          <div class="btn-group">
+
+            <input class="btn" type="submit" name="create" id="create" value="POST">
+
+          </div>
+
+        </form>
+        <!---->
+
+      </div>
+
+    </div>
+
+  </div>
+
+  --------------------------------------- insert post basic.php --------------------------------------------------
+
+
+
+  <?php
+
+include '../PHPOnly/connect.php'; // this file will be used
+
+$stmt = $conn->prepare('SELECT email, username, pfp FROM accounts WHERE id = ?');
+// we will use the session id to retrieve the corresponding user data.
+$stmt->bind_param('i', $_SESSION['id']);
+$stmt->execute();
+$stmt->bind_result($email, $username, $pfp);
+$stmt->fetch();
+$stmt->close();
+
+//if(isset($_POST['createReply']))
+
+
+// if statement checks if createPOST has been sent but the $_FILES for the img isn't
+if (isset($_POST['post-reply'])) {
+  
+    $pid = $_POST["parent_id"];
+
+    $content = $_POST["reply-content"];
+    $tag = $_POST["tag"];
+
+    // this is an alternate post submission without the img being included                            1  2  3  4  5   values to send
+    $stmt = $conn->prepare('INSERT INTO mordhaureplies (parent_id, name, email, pfp, reply-content) VALUES (?, ?, ?, ?, ?)');
+    $stmt->bind_param('isssss', $pid , $username, $email, $pfp,  $content);
+    $stmt->execute();
+    header('Location: ../index.php'); // send the user on their merry way to index.php (this is the home screen)
+
+
+
+
+}
+
+
+
+?>

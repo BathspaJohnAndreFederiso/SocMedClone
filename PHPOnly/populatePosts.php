@@ -1,4 +1,4 @@
-<?php
+<?php // this is a PHP-only variant of the code that populates index.php with posts
 include 'connect.php';
 
 function createCommentRow($data)

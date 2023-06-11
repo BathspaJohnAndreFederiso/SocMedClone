@@ -4,17 +4,17 @@
 
 include 'connect.php';
 
-if (!isset($_POST['userBio'])) {
+if (!isset($_POST['userBio'])) { // if userBio is not set
     // Could not get the data that should have been sent.
     $_SESSION["Error"] = "Fill in the form before submitting.";
     header("Location: ../userprofile.php");
     exit();
 }
 
-// code that runs if this user's id exists in the database
-if ($stmt = $conn->prepare('UPDATE accounts SET bio = (?) WHERE id = ?')) {
 
-    $stmt->bind_param('si', $_POST['userBio'], $_SESSION['id']); // bind the two parameters of the prepared statements
+if ($stmt = $conn->prepare('UPDATE accounts SET bio = (?) WHERE id = ?')) { // prepare statement to update a biom using the id value as the pointer
+
+    $stmt->bind_param('si', $_POST['userBio'], $_SESSION['id']); // bind the two parameters of the prepared statements to the POST for userBio and the session for id
     $stmt->execute(); // execute
     header('Location: ../userprofile.php'); // send the user on their merry way to userprofile.php 
     exit();

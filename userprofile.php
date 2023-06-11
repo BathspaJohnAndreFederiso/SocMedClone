@@ -7,11 +7,11 @@ if (!isset($_SESSION['logged_in'])) { // this will catch anyone trying to go to 
   exit;
 }
 
-$stmt = $conn->prepare('SELECT email, username, join_date, pfp, bio FROM accounts WHERE id = ?');
+$stmt = $conn->prepare('SELECT email, username, join_date, pfp, bio FROM accounts WHERE id = ?'); // prepare a statement to select data from accounts, id is ?
 // we will use the session id to retrieve the corresponding user data.
-$stmt->bind_param('i', $_SESSION['id']);
+$stmt->bind_param('i', $_SESSION['id']); // bind the current session id to the prepared statement
 $stmt->execute();
-$stmt->bind_result($email, $username, $join_date, $pfp, $bio);
+$stmt->bind_result($email, $username, $join_date, $pfp, $bio); // execute and bind the results to the corresponding variable
 $stmt->fetch();
 $stmt->close();
 ?>
@@ -52,7 +52,7 @@ $stmt->close();
 
 
         <form action="PHPOnly/updateaccount.php" enctype="multipart/form-data" method="post" autocomplete="off">
-
+          <!-- use updateaccount.php in PHPOnly as action -->
           <!-- 
           <div class="update-pfp input-form">
             <input type="file" class="pfp-upload" id="pfp-upload" name="pfp-upload">
@@ -178,13 +178,13 @@ $stmt->close();
               <h1>
                 <?= htmlspecialchars($username) ?>
               </h1>
-
+                  <!-- htmlspecialchars applied to both variables for username and email, sanitizing it of illegal values  -->
               <h3>
                 <?= htmlspecialchars($email) ?>
               </h3>
 
               <p> Joined:
-                <?= $join_date ?>
+                <?= $join_date ?> <!-- display join date as well -->
               </p>
 
               <hr>
@@ -197,13 +197,13 @@ $stmt->close();
               <h4> About Me</h4>
               <div class="bio">
                 <p>
-                  <?= htmlspecialchars($bio) ?>
-                <p>
+                  <?= htmlspecialchars($bio) ?> 
+                <p>  <!-- display bio -->
               </div>
 
               <button id="editBio" class="editBio">
-                <h3><span style='color: white;'><span style='color: white;'>edit bio</span></h3>
-              </button>
+                <h3><span style='color: white;'>edit bio</span></h3>
+              </button> <!-- this button brings up editBio -->
 
             </div>
 
@@ -269,17 +269,17 @@ $stmt->close();
   </div>
 
   <script>
-    // Get the modal
+    // Get the modals
     var modal = document.getElementById("editModal");
     var modal2 = document.getElementById("editModal2");
-    // Get the button that opens the modal
+    // Get the buttons that open the modals
     var btn = document.getElementById("editBtn");
     var btn2 = document.getElementById("editBio");
-
+    // get the spans that will close the modal
     var span = document.getElementsByClassName("close")[0];
     var span2 = document.getElementsByClassName("close2")[0];
 
-    // When the user clicks the button, open the modal 
+    // When the user clicks on the button, open the modal 
     btn.onclick = function () {
       modal.style.display = "flex";
     }
@@ -288,7 +288,7 @@ $stmt->close();
       modal2.style.display = "flex";
     }
 
-    // When the user clicks on <span> (x), close the modal
+    // When the user clicks on <span>(looks like an x), close the modal by setting display to none
     span.onclick = function () {
       modal.style.display = "none";
     }
